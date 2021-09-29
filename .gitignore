@@ -7,7 +7,7 @@ local.properties
 .settings/
 
 # NetBeans specific
-nbproject/private/
+*nbproject/private/
 build/
 nbbuild/
 dist/
