@@ -1,7 +1,5 @@
 # Ignora las rutas especificas
 
-*.properties
-
 ### Java template
 *.class
 .metadata
