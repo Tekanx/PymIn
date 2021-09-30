@@ -32,7 +32,9 @@ public class main extends Application{
     
     public static void main(String[] args){
         launch(args);
-        ConexionBD ob= new ConexionBD();
-        ob.getDatos();
+        ConexionBD db= new ConexionBD();
+        db.getProducto("7802408015241");
+        //db.getDatosProductos();
+        //db.addProducto("6970647061419","Cubo Rubik",5990.0,1,"cubo chino");
     }
 }
