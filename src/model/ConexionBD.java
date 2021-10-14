@@ -32,20 +32,22 @@ public class ConexionBD {
             while(rs.next()){
                 String codigo = rs.getString("codigo");
                 String nombreProducto = rs.getString("nombreProducto");
+                Integer costo = rs.getInt("costo");
                 Double precio = rs.getDouble("precio");
                 Integer stock = rs.getInt("stock");
+                Integer categoria = rs.getInt("categoria");
                 String descripcion = rs.getString("descripcion");
-                System.out.println("DAtos: "+codigo+"  "+nombreProducto+"  "+precio+" "+stock+" "+descripcion);
+                System.out.println("DAtos: "+codigo+"  "+nombreProducto+"  "+costo+"  "+precio+" "+stock+" "+categoria+"  "+descripcion);
             }
         }catch(Exception ex){
             ex.printStackTrace();
         }
     }
     
-    public void addProducto(String codigo,String nombreProducto,Double precio,Integer stock,String descripcion){
+    public void addProducto(String codigo,String nombreProducto,Double costo,Double precio,Integer stock,int categoria,String descripcion){
   
         try{
-            String query = "INSERT INTO productos (codigo,nombreProducto,precio,stock,descripcion) values('"+codigo+"','"+nombreProducto+"','"+precio+"','"+stock+"','"+descripcion+"')";        
+            String query = "INSERT INTO productos (codigo,nombreProducto,costo,precio,stock,categoria,descripcion) values('"+codigo+"','"+nombreProducto+"','"+costo+"','"+precio+"','"+stock+"','"+categoria+"','"+descripcion+"')";        
             st.executeUpdate(query);
             System.out.println("coso añadido");
             getDatosProductos();
@@ -65,10 +67,12 @@ public class ConexionBD {
             rs = st.executeQuery(query);
             while(rs.next()){
                 String nombreProducto = rs.getString("nombreProducto");
+                Integer costo = rs.getInt("costo");
                 Double precio = rs.getDouble("precio");
                 Integer stock = rs.getInt("stock");
+                Integer categoria = rs.getInt("categoria");
                 String descripcion = rs.getString("descripcion");
-                System.out.println("Datos: "+codigo+"  "+nombreProducto+"  "+precio+" "+stock+" "+descripcion);
+                System.out.println("DAtos: "+codigo+"  "+nombreProducto+"  "+precio+" "+stock+" "+descripcion);
             }
         }catch(Exception ex){
             ex.printStackTrace();
