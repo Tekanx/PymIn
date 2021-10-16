@@ -1,5 +1,7 @@
 package main;
 
+import java.time.LocalTime;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +17,7 @@ import model.Inventario;
 public class main extends Application{
     
     public static Inventario MapaProductos = new Inventario();
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -35,6 +38,9 @@ public class main extends Application{
         ConexionBD db= new ConexionBD();
         //db.getProducto("7802408015241");
         //db.getDatosProductos();
-        //db.addProducto("6970647061419","Cubo Rubik",5990.0,1,"cubo chino");
+        //db.addProducto("6970647061417","Cubo Rubik",4500.0,5990.0,3,0,"cubo chino");
+        //db.updateNombreProducto("6970647061419", "Rubik cubo");
+        //db.updateStock("6970647061419", -7);
+        db.addCategoria("Galletas");
     }
 }
