@@ -5,7 +5,8 @@
  */
 package model;
 import java.sql.*;
-import java.time.LocalTime;  
+import java.time.LocalTime;
+import model.Producto;
 /**
  *
  * @author diana
@@ -67,14 +68,16 @@ public class ConexionBD {
         try{
             String query = "SELECT * FROM productos WHERE codigo= '"+codigo+"' ";        
             rs = st.executeQuery(query);
+            
             while(rs.next()){
                 String nombreProducto = rs.getString("nombreProducto");
-                Integer costo = rs.getInt("costo");
+                Double costo = rs.getDouble("costo");
                 Double precio = rs.getDouble("precio");
                 Integer stock = rs.getInt("stock");
                 Integer categoria = rs.getInt("categoria");
                 String descripcion = rs.getString("descripcion");
                 System.out.println("Datos: "+codigo+"  "+nombreProducto+"  "+precio+" "+stock+" "+descripcion);
+                //Producto producto= new Producto(codigo,nombreProducto,costo,precio,stock,categoria,descripcion);
             }
         }catch(Exception ex){
             ex.printStackTrace();
@@ -177,7 +180,7 @@ public class ConexionBD {
      
      //boleta
      
-     public void addBoleta(Time hora,Date fecha,String medioPago,Double total){
+     /*public void addBoleta(Time hora,Date fecha,String medioPago,Double total){
   
         try{
             String query = "INSERT INTO boletas (total,fecha,hora,medioPago) values('"+total+"','"+fecha+"','"+hora+"','"+medioPago+"')";        
@@ -187,6 +190,6 @@ public class ConexionBD {
         }catch(Exception ex){
             ex.printStackTrace();
         }
-    }
+    }*/
     
 }

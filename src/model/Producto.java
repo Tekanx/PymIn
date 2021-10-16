@@ -8,15 +8,23 @@ package model;
 public class Producto {
     private String codigo;
     private String nombre;
-    private int precio;
+    private Double costo;
+    private Double precio;
+    private Integer stock;
+    private String categoria;
+    private String descripcion;
 
     public Producto() {
     }
 
-    public Producto(String codigo, String nombre, int precio) {
+    public Producto(String codigo, String nombre,Double costo, Double precio,Integer stock,String categoria,String descripcion) {
         this.codigo = codigo;
         this.nombre = nombre;
+        this.costo = costo;
         this.precio = precio;
+        this.stock = stock;
+        this.categoria = categoria;
+        this.descripcion = descripcion;
     }
 
     public String getCodigo() {
@@ -35,11 +43,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public int getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
