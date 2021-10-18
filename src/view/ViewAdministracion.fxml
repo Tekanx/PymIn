@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1200.0" style="-fx-background-color: #bfb8a3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewAdministracionController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1200.0" style="-fx-background-color: #bfb8a3;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewAdministracionController">
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="200.0">
          <children>
@@ -22,7 +22,7 @@
                   <Insets top="5.0" />
                </HBox.margin>
             </Label>
-            <Button fx:id="btnAtras" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#eventAction" prefHeight="40.0" prefWidth="140.0" text="Salir de Admin">
+            <Button fx:id="btnAtras" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#eventAction" prefHeight="40.0" prefWidth="140.0" text="Volver al Menú">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -35,149 +35,172 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
       </HBox>
-      <HBox prefHeight="330.0">
+      <HBox prefHeight="600.0" prefWidth="1200.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="840.0">
+            <VBox prefHeight="200.0" prefWidth="870.0">
                <children>
-                  <HBox prefHeight="70.0" prefWidth="840.0">
+                  <HBox prefHeight="330.0" prefWidth="870.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="110.0">
+                        <VBox prefHeight="200.0" prefWidth="860.0">
                            <children>
-                              <Label text="Código*" underline="true">
+                              <HBox prefHeight="70.0" prefWidth="840.0">
+                                 <children>
+                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="110.0">
+                                       <children>
+                                          <Label text="Código*" underline="true">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField>
+                                             <VBox.margin>
+                                                <Insets top="21.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="350.0">
+                                       <children>
+                                          <Label text="Producto" underline="true" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField alignment="CENTER">
+                                             <VBox.margin>
+                                                <Insets top="21.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="180.0">
+                                       <children>
+                                          <Label text="Unidades Disponibles en el Inventario" textAlignment="CENTER" underline="true" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <Label text="Precio Unitario en el Inventario" textAlignment="CENTER" underline="true" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Label text="* Por favor selecciona el código de producto" textFill="#b82e25">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
                                  <font>
-                                    <Font name="System Bold" size="15.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
-                              <TextField>
-                                 <VBox.margin>
-                                    <Insets top="21.0" />
-                                 </VBox.margin>
-                              </TextField>
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="350.0">
-                           <children>
-                              <Label text="Producto" underline="true" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </Label>
-                              <TextField alignment="CENTER">
-                                 <VBox.margin>
-                                    <Insets top="21.0" />
-                                 </VBox.margin>
-                              </TextField>
                            </children>
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="10.0" right="10.0" />
                            </HBox.margin>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="180.0">
-                           <children>
-                              <Label text="Unidades Disponibles en el Inventario" textAlignment="CENTER" underline="true" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </Label>
-                              <TextField />
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Precio Unitario en el Inventario" textAlignment="CENTER" underline="true" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </Label>
-                              <TextField />
-                           </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <Label text="* Por favor selecciona el código de producto" textFill="#b82e25">
-                     <VBox.margin>
-                        <Insets left="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Label>
-               </children></VBox>
-            <VBox prefHeight="200.0" prefWidth="350.0" />
-         </children>
-         <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox prefHeight="330.0">
-         <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="870.0">
+                  <HBox prefHeight="300.0" prefWidth="880.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="900.0">
+                           <children>
+                              <Label lineSpacing="10.0" text="Productos en Inventario" underline="true">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TableView fx:id="tvProductos" prefHeight="870.0">
+                                <columns>
+                                  <TableColumn fx:id="colCodigo" prefWidth="105.0" text="Código Producto" />
+                                  <TableColumn fx:id="colNombreProd" prefWidth="187.0" text="Nombre Producto" />
+                                    <TableColumn fx:id="colDescripcionProd" prefWidth="481.0" text="Descripción" />
+                                    <TableColumn fx:id="colUnidadesProd" prefWidth="96.0" text="Unidades" />
+                                </columns>
+                              </TableView>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0">
                <children>
-                  <Label lineSpacing="10.0" text="Productos en Inventario" underline="true">
+                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Búsqueda por Scan">
                      <font>
-                        <Font name="System Bold" size="17.0" />
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Búsqueda manual">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnAgregarProductos" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1e81b0;" text="Agregar Producto" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="130.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnEliminarProductos" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1e81b0;" text="Modificar Producto" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
-                  </Label>
-                  <TableView fx:id="tvProductos" prefHeight="568.0">
-                    <columns>
-                      <TableColumn fx:id="colCodigo" prefWidth="105.0" text="Código Producto" />
-                      <TableColumn fx:id="colNombreProd" prefWidth="187.0" text="Nombre Producto" />
-                        <TableColumn fx:id="colDescripcionProd" prefWidth="489.0" text="Descripción" />
-                        <TableColumn fx:id="colUnidadesProd" prefWidth="88.0" text="Unidades" />
-                    </columns>
-                  </TableView>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="300.0">
-               <children>
-                  <VBox alignment="CENTER">
-                     <children>
-                        <Label alignment="TOP_CENTER" text="Producto Seleccionado: ">
-                           <font>
-                              <Font name="System Bold Italic" size="18.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets right="80.0" />
-                           </padding>
-                        </Label>
-                        <Label fx:id="labelProductoSeleccionado" alignment="CENTER" maxWidth="1.7976931348623157E308" text="ProductoProducto" textAlignment="CENTER">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Italic" size="26.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <Button fx:id="btnAgregarProductos" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1e81b0;" text="Agregar Productos" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="25.0" />
-                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnEliminarProductos1" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #e28743;" text="Eliminar Producto" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
-                  </Button>
-                  <Button fx:id="btnEliminarProductos" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #e28743;" text="Eliminar Productos" textFill="WHITE">
                      <VBox.margin>
-                        <Insets top="25.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnEliminarProductos11" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #24a359;" text="Reporte de Ventas" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
                   </Button>
                </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
             </VBox>
          </children>
-         <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </VBox.margin>
       </HBox>
    </children>
 </VBox>
