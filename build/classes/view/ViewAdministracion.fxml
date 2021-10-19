@@ -107,11 +107,11 @@
                                     <Font size="11.0" />
                                  </font>
                               </Label>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
+                              <HBox prefHeight="45.0" prefWidth="850.0">
                                  <children>
                                     <Label text="Característica adiccional" underline="true">
                                        <HBox.margin>
-                                          <Insets top="2.0" />
+                                          <Insets top="5.0" />
                                        </HBox.margin>
                                        <font>
                                           <Font name="System Bold" size="16.0" />
@@ -119,12 +119,12 @@
                                     </Label>
                                     <ComboBox prefWidth="150.0">
                                        <HBox.margin>
-                                          <Insets left="10.0" />
+                                          <Insets left="10.0" top="5.0" />
                                        </HBox.margin>
                                     </ComboBox>
                                     <Button mnemonicParsing="false" style="-fx-background-color: #1e81b0;" text="Agregar" textFill="WHITE">
                                        <HBox.margin>
-                                          <Insets left="10.0" />
+                                          <Insets left="10.0" top="5.0" />
                                        </HBox.margin>
                                        <font>
                                           <Font name="System Bold" size="13.0" />
@@ -134,6 +134,11 @@
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="180.0" prefWidth="850.0">
+                                 <children>
+                                    <VBox fx:id="CreateOnNewCarac" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
                               </HBox>
                            </children>
                            <HBox.margin>
