@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1200.0" style="-fx-background-color: #bfb8a3; -fx-border-style: line; -fx-border-width: 5; -fx-border-color: #696969;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1200.0" style="-fx-background-color: #bfb8a3; -fx-border-style: line; -fx-border-width: 5; -fx-border-color: #696969;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewVentaController">
    <children>
       <HBox prefHeight="50.0" prefWidth="1200.0">
          <children>
