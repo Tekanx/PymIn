@@ -1,6 +1,9 @@
 # PymIn
 Sistema de control de inventario y emisión de voucher a traves de software instalado en computador, con lector de código de barras
 
+### SQL Workbench
+- MySQL Installer 8.0.27: https://dev.mysql.com/downloads/windows/installer/8.0.html
+
 ### Java JDK
 - 16.0 Latest: https://adoptopenjdk.net
 
