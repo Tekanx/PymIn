@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documentos/GitHub/PymIn/src/model/Producto.java</file>
-            <file>file:/D:/Documentos/GitHub/PymIn/src/main/main.java</file>
-            <file>file:/D:/Documentos/GitHub/PymIn/src/model/Inventario.java</file>
-            <file>file:/D:/Documentos/GitHub/PymIn/src/model/ConexionBD.java</file>
+            <file>file:/C:/Users/Tekan/Documents/NetBeansProjects/PymIn/src/controller/ViewAdministracionController.java</file>
+            <file>file:/C:/Users/Tekan/Documents/NetBeansProjects/PymIn/src/controller/ViewIngresoController.java</file>
+            <file>file:/C:/Users/Tekan/Documents/NetBeansProjects/PymIn/src/model/ConexionBD.java</file>
+            <file>file:/C:/Users/Tekan/Documents/NetBeansProjects/PymIn/src/controller/ViewVentaController.java</file>
         </group>
     </open-files>
 </project-private>
