@@ -11,13 +11,20 @@ public class Producto {
     private Double costo;
     private Double precio;
     private Integer stock;
-    private String categoria;
+    private int categoria;
     private String descripcion;
 
     public Producto() {
     }
+    
+    public Producto(String codigo, String nombre, String descripcion, int stock){
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.stock = stock;
+    }
 
-    public Producto(String codigo, String nombre,Double costo, Double precio,Integer stock,String categoria,String descripcion) {
+    public Producto(String codigo, String nombre, Double costo, Double precio, Integer stock, int categoria, String descripcion) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.costo = costo;
@@ -33,6 +40,7 @@ public class Producto {
     public String toString() {
         return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", costo=" + costo + ", precio=" + precio + ", stock=" + stock + ", categoria=" + categoria + ", descripcion=" + descripcion + '}';
     }
+
     
     /* Getters & Setters */
     
@@ -76,11 +84,11 @@ public class Producto {
         this.stock = stock;
     }
 
-    public String getCategoria() {
+    public int getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
 
