@@ -44,6 +44,14 @@
                   <Insets left="60.0" right="60.0" />
                </VBox.margin>
             </VBox>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Salir">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="420.0" style="-fx-background-color: #30373e;">

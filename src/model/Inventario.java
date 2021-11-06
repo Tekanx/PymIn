@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 import java.util.ArrayList;
@@ -15,10 +11,12 @@ import javax.swing.JOptionPane;
  */
 public class Inventario {
     //Key = Código?, Value = Producto
-    private HashMap hmProducto = new HashMap();
+    private HashMap<String,Producto> hmProducto = new HashMap();
 
     public Inventario() {
     }
+    
+    /* Methods */
     
     public Producto getProducto(String codigo){
         
@@ -70,7 +68,10 @@ public class Inventario {
         }
         return alProductos;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Inventario{" + "hmProducto=" + hmProducto + '}';
+    } 
     
 }

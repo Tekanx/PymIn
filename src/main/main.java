@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.ConexionBD;
 import model.Inventario;
+import model.RegistroVentas;
 
 /**
  *
@@ -17,7 +18,8 @@ import model.Inventario;
 public class main extends Application{
     
     public static Inventario MapaProductos = new Inventario();
-
+    public static RegistroVentas MapaVentas = new RegistroVentas();
+    public static ConexionBD DataBase= new ConexionBD();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -34,13 +36,12 @@ public class main extends Application{
     }
     
     public static void main(String[] args){
-        launch(args);
-        //ConexionBD db= new ConexionBD();
-        //db.getProducto("7802408015241");
-        //db.getDatosProductos();
+        DataBase.getProducto("7802408015241");
+        DataBase.getDatosProductos();
         //db.addProducto("6970647061417","Cubo Rubik",4500.0,5990.0,3,0,"cubo chino");
         //db.updateNombreProducto("6970647061419", "Rubik cubo");
         //db.updateStock("6970647061419", -7);
         //db.addCategoria("Galletas");
+        launch(args);
     }
 }
