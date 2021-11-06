@@ -38,7 +38,7 @@
       </HBox>
       <HBox prefHeight="600.0" prefWidth="1200.0">
          <children>
-            <VBox prefHeight="595.0" prefWidth="877.0">
+            <VBox prefHeight="200.0" prefWidth="870.0">
                <children>
                   <HBox prefHeight="330.0" prefWidth="870.0">
                      <children>
@@ -159,9 +159,9 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <TableView fx:id="tvProductos" prefHeight="235.0" prefWidth="870.0">
+                              <TableView fx:id="tvProductos" prefHeight="870.0">
                                 <columns>
-                                  <TableColumn fx:id="colCodigoProd" prefWidth="105.0" text="Código Producto" />
+                                  <TableColumn fx:id="colCodigo" prefWidth="105.0" text="Código Producto" />
                                   <TableColumn fx:id="colNombreProd" prefWidth="187.0" text="Nombre Producto" />
                                     <TableColumn fx:id="colDescripcionProd" prefWidth="481.0" text="Descripción" />
                                     <TableColumn fx:id="colUnidadesProd" prefWidth="96.0" text="Unidades" />
