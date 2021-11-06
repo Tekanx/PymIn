@@ -39,7 +39,11 @@
       </HBox>
       <HBox prefHeight="600.0" prefWidth="1200.0">
          <children>
+<<<<<<< HEAD
             <VBox prefHeight="595.0" prefWidth="990.0">
+=======
+            <VBox prefHeight="595.0" prefWidth="877.0">
+>>>>>>> 6ce3fcee135df6a597f5cbe8c377e5f717c1806c
                <children>
                   <HBox prefHeight="177.0" prefWidth="975.0">
                      <children>
@@ -172,12 +176,21 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
+<<<<<<< HEAD
                               <TableView fx:id="tvProductos" prefHeight="375.0" prefWidth="965.0">
                                 <columns>
                                   <TableColumn fx:id="colCodigo" prefWidth="115.0" text="Código Producto" />
                                   <TableColumn fx:id="colNombreProd" prefWidth="177.0" text="Nombre Producto" />
                                     <TableColumn fx:id="colDescripcionProd" prefWidth="473.0" text="Descripción" />
                                     <TableColumn fx:id="colUnidadesProd" prefWidth="104.0" text="Unidades" />
+=======
+                              <TableView fx:id="tvProductos" prefHeight="235.0" prefWidth="870.0">
+                                <columns>
+                                  <TableColumn fx:id="colCodigoProd" prefWidth="105.0" text="Código Producto" />
+                                  <TableColumn fx:id="colNombreProd" prefWidth="187.0" text="Nombre Producto" />
+                                    <TableColumn fx:id="colDescripcionProd" prefWidth="481.0" text="Descripción" />
+                                    <TableColumn fx:id="colUnidadesProd" prefWidth="96.0" text="Unidades" />
+>>>>>>> 6ce3fcee135df6a597f5cbe8c377e5f717c1806c
                                 </columns>
                               </TableView>
                            </children>

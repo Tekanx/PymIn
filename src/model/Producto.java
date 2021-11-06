@@ -11,13 +11,20 @@ public class Producto {
     private Double costo;
     private Double precio;
     private Integer stock;
-    private String categoria;
+    private int categoria;
     private String descripcion;
 
     public Producto() {
     }
+    
+    public Producto(String codigo, String nombre, String descripcion, int stock){
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.stock = stock;
+    }
 
-    public Producto(String codigo, String nombre,Double costo, Double precio,Integer stock,String categoria,String descripcion) {
+    public Producto(String codigo, String nombre, Double costo, Double precio, Integer stock, int categoria, String descripcion) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.costo = costo;
@@ -26,7 +33,17 @@ public class Producto {
         this.categoria = categoria;
         this.descripcion = descripcion;
     }
+    
+    /* Methods */
 
+    @Override
+    public String toString() {
+        return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", costo=" + costo + ", precio=" + precio + ", stock=" + stock + ", categoria=" + categoria + ", descripcion=" + descripcion + '}';
+    }
+
+    
+    /* Getters & Setters */
+    
     public String getCodigo() {
         return codigo;
     }
@@ -51,10 +68,39 @@ public class Producto {
         this.precio = precio;
     }
 
-    
-    @Override
-    public String toString() {
-        return "Producto{" + " codigo=" + codigo + "\n nombre=" + nombre + "\n precio=" + precio + '}';
+    public Double getCosto() {
+        return costo;
     }
+
+    public void setCosto(Double costo) {
+        this.costo = costo;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public int getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(int categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    
+   
     
 }

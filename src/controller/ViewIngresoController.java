@@ -36,6 +36,9 @@ public class ViewIngresoController implements Initializable {
     private Button btnVentas;
     
     @FXML
+    private Button btnSalir;
+    
+    @FXML
     private void eventKey(KeyEvent event){
         
     }
@@ -50,6 +53,10 @@ public class ViewIngresoController implements Initializable {
         
         if(evt.equals(btnVentas)){
             loadStage("/view/ViewVenta.fxml", event);
+        }
+        
+        if(evt.equals(btnSalir)){
+            System.exit(0);
         }
     }
     

@@ -1,13 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -20,9 +19,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import static main.main.DataBase;
 import model.Producto;
 
 /**
@@ -31,38 +32,35 @@ import model.Producto;
  * @author Tekan
  */
 public class ViewAdministracionController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
     
     @FXML
     private Label labelProductoSeleccionado;
     
+    
+    /* TableView Components */
+    
+    @FXML
+    private TableView<Producto> tvProductos = new TableView<>();
+    
+    @FXML 
+    private TableColumn<Producto, String> colCodigoProd = new TableColumn<>("Código Producto");
+    
+    @FXML
+    private TableColumn<Producto, String> colNombreProd= new TableColumn<>("Nombre Producto");
+    
+    @FXML
+    private TableColumn<Producto, String> colDescripcionProd= new TableColumn<>("Descripción");
+    
+    @FXML
+    private TableColumn<Producto, Integer> colUnidadesProd= new TableColumn<>("Unidades");
+    
+    
+   /* Buttons */
     @FXML
     private Button btnAgregarProductos;
     
     @FXML 
     private Button btnEliminarProductos;
-    
-    @FXML
-    private TableView<Producto> tvProductos;
-    
-    @FXML 
-    private TableColumn<Producto, Integer> colCodigoProd;
-    
-    @FXML
-    private TableColumn<Producto, String> colNombreProd;
-    
-    @FXML
-    private TableColumn<Producto, String> colDescripcionProd;
-    
-    @FXML
-    private TableColumn<Producto, Integer> colUnidadesProd;
-    
-    
-    
-    
     
     @FXML
     private Button btnAtras;
@@ -81,6 +79,31 @@ public class ViewAdministracionController implements Initializable {
         }
         
     }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        loadTable();
+        //tvProductos.getItems().add(new Producto("1564", "Algo", "Si", 15));
+    }    
+    
+    /* Methods*/
+    
+    private void loadTable(){
+        try{
+            ArrayList<Producto> productos = new ArrayList();
+            productos = DataBase.getProductos();
+            
+            colCodigoProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("codigo"));
+            colNombreProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
+            colDescripcionProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("descripcion"));
+            colUnidadesProd.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("stock"));
+            
+            ObservableList dataProductos = FXCollections.observableList(productos); 
+            tvProductos.setItems(dataProductos);
+        }catch(Exception SQLEx){
+            SQLEx.printStackTrace();
+        }
+    } 
     
     private void loadStage(String url, Event event){
         try{
@@ -103,9 +126,5 @@ public class ViewAdministracionController implements Initializable {
     } 
     
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
     
 }

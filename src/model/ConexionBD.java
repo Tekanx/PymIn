@@ -6,6 +6,7 @@
 package model;
 import java.sql.*;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import model.Producto;
 /**
  *
@@ -82,6 +83,31 @@ public class ConexionBD {
         }catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+    
+    public ArrayList getProductos(){
+        ArrayList list = new ArrayList();
+        try{
+            String query = "SELECT * FROM productos";
+            this.rs = this.st.executeQuery(query);
+            
+            while(rs.next()){
+                Producto prod = new Producto();
+                prod.setCodigo(rs.getString("codigo"));
+                prod.setNombre(rs.getString("nombreProducto"));
+                prod.setCosto(rs.getDouble("costo"));
+                prod.setPrecio(rs.getDouble("precio"));
+                prod.setStock(rs.getInt("stock"));
+                prod.setCategoria(rs.getInt("categoria"));
+                prod.setDescripcion(rs.getString("descripcion"));
+                list.add(prod);
+                System.out.println(prod.toString());
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        
+        return list;
     }
     
     public void updateNombreProducto(String codigo,String nombreProducto){
