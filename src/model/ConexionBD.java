@@ -57,15 +57,11 @@ public class ConexionBD {
             getDatosProductos();
         }catch(Exception ex){
             ex.printStackTrace();
-        }/*finally{
-            try{
-                con.close();
-            }catch(Exception ex){
-                ex.printStackTrace();
-            }
-        }*/
+        }
     }
-    public void getProducto(String codigo){
+    
+    public Producto getProducto(String codigo){
+        Producto producto=new Producto();
         try{
             String query = "SELECT * FROM productos WHERE codigo= '"+codigo+"' ";        
             rs = st.executeQuery(query);
@@ -77,12 +73,14 @@ public class ConexionBD {
                 Integer stock = rs.getInt("stock");
                 Integer categoria = rs.getInt("categoria");
                 String descripcion = rs.getString("descripcion");
-                System.out.println("Datos: "+codigo+"  "+nombreProducto+"  "+precio+" "+stock+" "+descripcion);
-                //Producto producto= new Producto(codigo,nombreProducto,costo,precio,stock,categoria,descripcion);
+               // System.out.println("Datos: "+codigo+"  "+nombreProducto+"  "+precio+" "+stock+" "+descripcion);        
+                producto= new Producto(codigo,nombreProducto,costo,precio,stock,categoria,descripcion);
+                return producto;
             }
         }catch(Exception ex){
             ex.printStackTrace();
         }
+       return producto; 
     }
     
     public ArrayList getProductos(){
@@ -206,16 +204,32 @@ public class ConexionBD {
      
      //boleta
      
-     /*public void addBoleta(Time hora,Date fecha,String medioPago,Double total){
+     public void addBoleta(Boleta boleta){
   
         try{
-            String query = "INSERT INTO boletas (total,fecha,hora,medioPago) values('"+total+"','"+fecha+"','"+hora+"','"+medioPago+"')";        
+            //guardado de boleta en la bd
+            String query = "INSERT INTO boletas (total,fecha,hora,medioPago) values('"+boleta.getTotalVenta()+"','"+boleta.getFecha()+"','"+boleta.getHora()+"','"+boleta.getMedioPago()+"')";        
             st.executeUpdate(query);
-            System.out.println("coso añadido");
-            getDatosProductos();
+            
+            query = "SELECT MAX(idboletas) AS id FROM boletas";        
+            rs = st.executeQuery(query);
+            int id=0;
+            while(rs.next()){
+                id =rs.getInt("id");
+            }
+            //se guardan los productos vendidos con el idboleta 
+            for(int i=0;i<boleta.getListaProductos().size();i++) {
+                ProductoVendido prodVendido= boleta.getListaProductos().get(i);
+                query = "INSERT INTO prodvendido (idBoleta,codigoP,cantidad) values('"+id+"','"+prodVendido.getCodigoProducto()+"','"+prodVendido.getCantidad()+"')"; 
+                st.executeUpdate(query);
+                //se descuenta la cantidad del stock del producto
+                updateStock(prodVendido.getCodigoProducto(),-prodVendido.getCantidad());
+            }
+            System.out.println("coso añadido++"+id);
+            
         }catch(Exception ex){
             ex.printStackTrace();
         }
-    }*/
+    }
     
 }

@@ -28,6 +28,13 @@ public class Boleta {
         this.hora = hora;
         this.medioPago = medioPago;
     }
+    public Boleta(int id, LocalDate fecha, LocalTime hora, String medioPago) { // cuando recien se crea y se le agregaran productos
+        this.id = id;
+        this.totalVenta = 0.0;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.medioPago = medioPago;
+    }
 
     
     /* Methods */
@@ -73,6 +80,14 @@ public class Boleta {
         this.medioPago = medioPago;
     }
     
-    
+    public void addProductoVendido(ProductoVendido prodVendido){ //falta revisar si ya esta
+        prodVendido.setIdBoleta(id);
+        listaProductos.add(prodVendido);
+       //totalVenta+= prodVendido.getCantidad() * //valor producto
+        
+    }
+    public ArrayList<ProductoVendido> getListaProductos(){
+        return listaProductos;
+    }
     
 }

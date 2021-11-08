@@ -15,6 +15,13 @@ public class Producto {
     private String descripcion;
 
     public Producto() {
+        this.codigo = "0";
+        this.nombre = "none";
+        this.costo = 0.0;
+        this.precio = 0.0;
+        this.stock = 0;
+        this.categoria = 0;
+        this.descripcion = "";
     }
     
     public Producto(String codigo, String nombre, String descripcion, int stock){
