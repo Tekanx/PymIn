@@ -21,7 +21,7 @@ public class Boleta {
     public Boleta() {
     }
 
-    public Boleta(int id, double totalVenta, LocalDate fecha, LocalTime hora, String medioPago) {
+    public Boleta(int id, double totalVenta, LocalDate fecha, LocalTime hora, String medioPago) { //desde bd
         this.id = id;
         this.totalVenta = totalVenta;
         this.fecha = fecha;
@@ -83,9 +83,14 @@ public class Boleta {
     public void addProductoVendido(ProductoVendido prodVendido){ //falta revisar si ya esta
         prodVendido.setIdBoleta(id);
         listaProductos.add(prodVendido);
-       //totalVenta+= prodVendido.getCantidad() * //valor producto
-        
+        totalVenta+= prodVendido.getPrecioTotal(); //valor producto
     }
+    
+    public void addPVendidoBD(ProductoVendido prodVendido){
+        prodVendido.setIdBoleta(id);
+        listaProductos.add(prodVendido);
+    }
+    
     public ArrayList<ProductoVendido> getListaProductos(){
         return listaProductos;
     }

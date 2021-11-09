@@ -204,8 +204,7 @@ public class ConexionBD {
      
      //boleta
      
-     public void addBoleta(Boleta boleta){
-  
+     public void addBoleta(Boleta boleta){ 
         try{
             //guardado de boleta en la bd
             String query = "INSERT INTO boletas (total,fecha,hora,medioPago) values('"+boleta.getTotalVenta()+"','"+boleta.getFecha()+"','"+boleta.getHora()+"','"+boleta.getMedioPago()+"')";        
