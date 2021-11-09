@@ -24,12 +24,12 @@ public class Producto {
         this.descripcion = "";
     }
     
-    public Producto(String codigo, String nombre, String descripcion, int stock){
+    /*public Producto(String codigo, String nombre, String descripcion, int stock){
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.stock = stock;
-    }
+    }*/
 
     public Producto(String codigo, String nombre, Double costo, Double precio, Integer stock, int categoria, String descripcion) {
         this.codigo = codigo;

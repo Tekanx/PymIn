@@ -45,11 +45,11 @@ public class main extends Application{
         /// creacion de boleta y guardado en la bd descontando el stock de los productos
         /*Boleta boleta=new Boleta(0, 2036.2, LocalDate.now(), LocalTime.now(), "");
         ProductoVendido pv1= new ProductoVendido(0,"7802215101854",3);
-        boleta.addProductoVendido(pv1);
+        boleta.addPVendidoBD(pv1);
         ProductoVendido pv2= new ProductoVendido(0,"7802640720545",3);
-        boleta.addProductoVendido(pv2);
+        boleta.addPVendidoBD(pv2);
         ProductoVendido pv3= new ProductoVendido(0,"7802408001787",3);
-        boleta.addProductoVendido(pv3);
+        boleta.addPVendidoBD(pv3);
         DataBase.addBoleta(boleta);*/
     
     

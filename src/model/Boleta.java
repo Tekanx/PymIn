@@ -80,13 +80,38 @@ public class Boleta {
         this.medioPago = medioPago;
     }
     
-    public void addProductoVendido(ProductoVendido prodVendido){ //falta revisar si ya esta
-        prodVendido.setIdBoleta(id);
-        listaProductos.add(prodVendido);
-        totalVenta+= prodVendido.getPrecioTotal(); //valor producto
+    public void addProductoVendido(Producto producto,int cantidad){ 
+        for(int i=0; i <listaProductos.size(); i++){ //revisando si ya esta 
+            if(listaProductos.get(i).getCodigoProducto() == producto.getCodigo()){ //si está
+                ProductoVendido pv = listaProductos.get(i);
+                int aux = listaProductos.get(i).getCantidad()  + cantidad;
+                if(aux < 0){
+                    System.out.print("error al restar cantidad de producto");
+                }else if(aux == 0){
+                   listaProductos.remove(i);
+                }else{
+                    if(pv.compatibilidadStock(aux)){
+                        totalVenta-= pv.getPrecioTotal();
+                        pv.setCantidad(aux);
+                        totalVenta+= pv.getPrecioTotal();
+                    }else{
+                        System.out.print("cantidad mayor al stock disponible");
+                    }                    
+                }
+                return;
+            }        
+        }// si no está
+        ProductoVendido prodVendido= new ProductoVendido(id,producto,cantidad);
+        if(prodVendido.compatibilidadStock(cantidad)){       
+            listaProductos.add(prodVendido);
+            totalVenta+= prodVendido.getPrecioTotal();  
+        }else{
+            //mensaje que no se pudo
+        }
     }
+
     
-    public void addPVendidoBD(ProductoVendido prodVendido){
+    public void addPVendidoBD(ProductoVendido prodVendido){ //añadido desde BD
         prodVendido.setIdBoleta(id);
         listaProductos.add(prodVendido);
     }

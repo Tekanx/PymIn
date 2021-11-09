@@ -230,5 +230,18 @@ public class ConexionBD {
             ex.printStackTrace();
         }
     }
-    
+     
+     public int getUltimoIdBoleta(){
+        int id =0;
+        try{
+            String query = "SELECT MAX(idboletas) AS id FROM boletas";        
+                rs = st.executeQuery(query);
+                while(rs.next()){
+                    id =rs.getInt("id");
+                }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }   
+        return id;
+     }   
 }

@@ -24,6 +24,7 @@ public class ProductoVendido {
         //this.codigoProducto = codigoProducto;
         this.producto= producto;
         this.cantidad = cantidad;
+        //falta ver si cantidad es posible dependiendo el stock
     }
 
     /* Methods */
@@ -89,5 +90,11 @@ public class ProductoVendido {
         precioTotal= producto.getPrecio()*cantidad;
         return precioTotal;
     }
-    
+    public boolean compatibilidadStock(int cantidad){
+        if(cantidad > producto.getStock()){
+           return false; 
+        }
+        return true;
+        
+    }
 }
