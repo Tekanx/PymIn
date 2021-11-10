@@ -71,9 +71,14 @@ public class ConexionBD {
                 Double costo = rs.getDouble("costo");
                 Double precio = rs.getDouble("precio");
                 Integer stock = rs.getInt("stock");
-                Integer categoria = rs.getInt("categoria");
                 String descripcion = rs.getString("descripcion");
-               // System.out.println("Datos: "+codigo+"  "+nombreProducto+"  "+precio+" "+stock+" "+descripcion);        
+                int cat= rs.getInt("categoria");
+                String query2 = "SELECT nombreCategoria FROM categorias WHERE idCategoria='"+cat+"' ";
+                rs = st.executeQuery(query2);
+                rs.next();
+                String categoria = rs.getString("nombreCategoria");
+                
+               System.out.println("Datos: "+codigo+"  "+nombreProducto+"  "+precio+" "+stock+" "+descripcion+" "+categoria);        
                 producto= new Producto(codigo,nombreProducto,costo,precio,stock,categoria,descripcion);
                 return producto;
             }
@@ -96,8 +101,13 @@ public class ConexionBD {
                 prod.setCosto(rs.getDouble("costo"));
                 prod.setPrecio(rs.getDouble("precio"));
                 prod.setStock(rs.getInt("stock"));
-                prod.setCategoria(rs.getInt("categoria"));
                 prod.setDescripcion(rs.getString("descripcion"));
+                prod.setCategoria("ninguna");
+                /*int cat= rs.getInt("categoria");
+                String query2 = "SELECT nombreCategoria FROM categorias WHERE idCategoria='"+cat+"' ";
+                ResultSet rs2 = st.executeQuery(query2);
+                rs2.next();
+                prod.setCategoria(rs2.getString("nombreCategoria"));*/
                 list.add(prod);
                 System.out.println(prod.toString());
             }
@@ -162,18 +172,22 @@ public class ConexionBD {
     
      
      //categorias
-     public void getCategorias(){
+     public ArrayList getCategorias(){
+        ArrayList list = new ArrayList();
         try{
-            String query = "SELECT * FROM categorias";        
+            String query = "SELECT nombreCategoria FROM categorias";        
             rs = st.executeQuery(query);
             while(rs.next()){
-                Integer idCategoria = rs.getInt("idCategoria");
+                //Integer idCategoria = rs.getInt("idCategoria");
                 String nombreCategoria = rs.getString("nombreCategoria");
-                System.out.println("categorias: "+idCategoria+"  "+nombreCategoria);
+                list.add(nombreCategoria);
+                //System.out.println("categorias: "+idCategoria+"  "+nombreCategoria);
             }           
         }catch(Exception ex){
             ex.printStackTrace();
         }
+        return list;
+        
     }
      
      public void addCategoria(String nombreCategoria){

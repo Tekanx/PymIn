@@ -40,7 +40,7 @@ public class main extends Application{
     
     public static void main(String[] args){
         DataBase.getProducto("7802408015241");
-        DataBase.getDatosProductos();
+        //DataBase.getDatosProductos();
         
         /// creacion de boleta y guardado en la bd descontando el stock de los productos
         /*Boleta boleta=new Boleta(0, 2036.2, LocalDate.now(), LocalTime.now(), "");
