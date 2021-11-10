@@ -7,6 +7,8 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -17,9 +19,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import model.Producto;
+import model.ProductoVendido;
 
 /**
  * FXML Controller class
@@ -50,6 +55,37 @@ public class ViewVentaController implements Initializable {
         
     }
     
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+    
+    
+    
+    private int checkQuantity(Producto productoEscaneado){
+        Boolean isValid = false;
+        Optional<String> quantityProduct;
+        TextInputDialog quantityDialog = new TextInputDialog("Ingrese cantidad del producto");
+        quantityDialog.setTitle("");
+        quantityDialog.setHeaderText("");
+        quantityDialog.setContentText("");
+        do{
+            quantityProduct = quantityDialog.showAndWait();
+            if(quantityProduct.isPresent()){
+            }
+        
+        }while(quantityProduct.isEmpty() && !isValid);
+        
+        
+        
+            return Integer.parseInt(quantityProduct.get());
+        
+    }
+    
+    private void loadStage(String url, Event event, ArrayList<ProductoVendido> listaProductos){
+    }
+    
     private void loadStage(String url, Event event){
         try{
             Stage stage = (Stage) ((Node)(event.getSource())).getScene().getWindow();
@@ -69,10 +105,4 @@ public class ViewVentaController implements Initializable {
             JOptionPane.showMessageDialog(null, "Error de carga de Escena: \n" + ex,"ERROR DE CARGA",JOptionPane.WARNING_MESSAGE);
         }
     } 
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
 }
