@@ -12,6 +12,7 @@ import model.ConexionBD;
 import model.Inventario;
 import model.RegistroVentas;
 import model.Boleta;
+import model.Producto;
 import model.ProductoVendido;
 
 /**
@@ -39,8 +40,8 @@ public class main extends Application{
     }
     
     public static void main(String[] args){
-        DataBase.getProducto("7802408015241");
-        //DataBase.getDatosProductos();
+        //DataBase.getProducto("7802408015241");
+        //DataBase.getBoletasRange(LocalDate.parse("2021-11-10"),LocalDate.parse("2021-11-14"));  Ejemplo de busqueda por rango fechas
         
         /// creacion de boleta y guardado en la bd descontando el stock de los productos
         /*Boleta boleta=new Boleta(0, 2036.2, LocalDate.now(), LocalTime.now(), "");
@@ -51,7 +52,6 @@ public class main extends Application{
         ProductoVendido pv3= new ProductoVendido(0,"7802408001787",3);
         boleta.addPVendidoBD(pv3);
         DataBase.addBoleta(boleta);*/
-    
     
         //db.addProducto("6970647061417","Cubo Rubik",4500.0,5990.0,3,0,"cubo chino");
         //db.updateNombreProducto("6970647061419", "Rubik cubo");
