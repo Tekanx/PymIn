@@ -125,6 +125,37 @@ public class ConexionBD {
         return list;
     }
     
+    /**Retorna una Arraylist con todos los productos existentes en la base de datos que coincidan con la categoria dada
+     * @param cat   nombre de la categoria
+     * @return list  ArrayList con productos
+     **/
+    public ArrayList getProductosForCategoria(String cat){
+        ArrayList list = new ArrayList();
+        try{
+            String query = "SELECT * FROM productos p\n" +
+                            "INNER JOIN categorias c\n" +
+                            "ON p.categoria = c.idCategoria "+
+                            "WHERE nombreCategoria = '"+cat+"' ;" ;
+            this.rs = this.st.executeQuery(query);
+            
+            while(rs.next()){
+                String codigo = rs.getString("codigo");
+                String nombreProducto = rs.getString("nombreProducto");
+                Double costo = rs.getDouble("costo");
+                Double precio = rs.getDouble("precio");
+                Integer stock = rs.getInt("stock");
+                String descripcion = rs.getString("descripcion");
+                String categoria = rs.getString("nombreCategoria");                
+                Producto prod= new Producto(codigo,nombreProducto,costo,precio,stock,categoria,descripcion);            
+                list.add(prod);
+                System.out.println(prod.toString());
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }     
+        return list;
+    }
+    
     /**Cambia en la base de datos el nombre del producto que coincida con el codigo entregado
      * @param codigo
      * @param nombreProducto

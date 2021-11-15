@@ -52,7 +52,7 @@ public class main extends Application{
         ProductoVendido pv3= new ProductoVendido(0,"7802408001787",3);
         boleta.addPVendidoBD(pv3);
         DataBase.addBoleta(boleta);*/
-    
+        DataBase.getProductosForCategoria("ninguna");
         //db.addProducto("6970647061417","Cubo Rubik",4500.0,5990.0,3,0,"cubo chino");
         //db.updateNombreProducto("6970647061419", "Rubik cubo");
         //db.updateStock("6970647061419", -7);
