@@ -76,7 +76,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="575.0" prefWidth="210.0">
                <children>
-                  <Button fx:id="btnAgregarProductos" mnemonicParsing="false" prefHeight="224.0" prefWidth="195.0" style="-fx-background-color: #1e81b0;" text="Agregar, Modificar, Eliminar o Buscar Producto" textFill="WHITE" wrapText="true">
+                  <Button fx:id="btnGestionarProductos" mnemonicParsing="false" onAction="#eventAction" prefHeight="224.0" prefWidth="195.0" style="-fx-background-color: #1e81b0;" text="Agregar, Modificar, Eliminar o Buscar Producto" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -87,8 +87,8 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <TextField prefHeight="33.0" prefWidth="195.0" />
-                  <Button fx:id="btnAgregarProductos1" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1e81b0;" text="Agregar Categoria" textFill="WHITE">
+                  <TextField fx:id="tfAgregarCategoria" prefHeight="33.0" prefWidth="195.0" />
+                  <Button fx:id="btnAgregarCategoria" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1e81b0;" text="Agregar Categoria" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -96,7 +96,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnEliminarProductos11" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #24a359;" text="Reporte de Ventas" textFill="WHITE">
+                  <Button fx:id="btnGenerarReporte" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #24a359;" text="Reporte de Ventas" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -120,7 +120,7 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" lineSpacing="10.0" prefHeight="58.0" prefWidth="263.0" text="\$0" textAlignment="CENTER" underline="true">
+                  <Label fx:id="labelValorInventario" alignment="CENTER" lineSpacing="10.0" prefHeight="58.0" prefWidth="263.0" text="\$0" textAlignment="CENTER" underline="true">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
