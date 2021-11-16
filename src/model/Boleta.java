@@ -21,9 +21,16 @@ public class Boleta {
     public Boleta() {
     }
 
-    public Boleta(int id, double totalVenta, LocalDate fecha, LocalTime hora, String medioPago) {
+    public Boleta(int id, double totalVenta, LocalDate fecha, LocalTime hora, String medioPago) { //desde bd
         this.id = id;
         this.totalVenta = totalVenta;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.medioPago = medioPago;
+    }
+    public Boleta(int id, LocalDate fecha, LocalTime hora, String medioPago) { // cuando recien se crea y se le agregaran productos
+        this.id = id;
+        this.totalVenta = 0.0;
         this.fecha = fecha;
         this.hora = hora;
         this.medioPago = medioPago;
@@ -73,6 +80,44 @@ public class Boleta {
         this.medioPago = medioPago;
     }
     
+    public void addProductoVendido(Producto producto,int cantidad){ 
+        for(int i=0; i <listaProductos.size(); i++){ //revisando si ya esta 
+            if(listaProductos.get(i).getCodigoProducto() == producto.getCodigo()){ //si está
+                ProductoVendido pv = listaProductos.get(i);
+                int aux = listaProductos.get(i).getCantidad()  + cantidad;
+                if(aux < 0){
+                    System.out.print("error al restar cantidad de producto");
+                }else if(aux == 0){
+                   listaProductos.remove(i);
+                }else{
+                    if(pv.compatibilidadStock(aux)){
+                        totalVenta-= pv.getPrecioTotal();
+                        pv.setCantidad(aux);
+                        totalVenta+= pv.getPrecioTotal();
+                    }else{
+                        System.out.print("cantidad mayor al stock disponible");
+                    }                    
+                }
+                return;
+            }        
+        }// si no está
+        ProductoVendido prodVendido= new ProductoVendido(id,producto,cantidad);
+        if(prodVendido.compatibilidadStock(cantidad)){       
+            listaProductos.add(prodVendido);
+            totalVenta+= prodVendido.getPrecioTotal();  
+        }else{
+            //mensaje que no se pudo
+        }
+    }
+
     
+    public void addPVendidoBD(ProductoVendido prodVendido){ //añadido desde BD
+        prodVendido.setIdBoleta(id);
+        listaProductos.add(prodVendido);
+    }
+    
+    public ArrayList<ProductoVendido> getListaProductos(){
+        return listaProductos;
+    }
     
 }
