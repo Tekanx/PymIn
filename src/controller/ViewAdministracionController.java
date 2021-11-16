@@ -23,7 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import static main.main.DataBase;
+import static main.Main.DataBase;
 import model.Producto;
 
 /**
