@@ -37,14 +37,13 @@
       </HBox>
       <HBox prefHeight="600.0" prefWidth="1200.0">
          <children>
-            <VBox prefHeight="595.0" prefWidth="990.0">
+            <VBox prefHeight="567.0" prefWidth="963.0">
                <children>
-                  <HBox prefHeight="71.0" prefWidth="975.0" />
-                  <HBox alignment="TOP_CENTER" prefHeight="462.0" prefWidth="975.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="565.0" prefWidth="962.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="430.0" prefWidth="965.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="490.0" prefWidth="969.0">
                            <children>
-                              <Label lineSpacing="10.0" text="Productos en Inventario" underline="true">
+                              <Label lineSpacing="10.0" prefHeight="70.0" prefWidth="193.0" text="Productos en Inventario" underline="true">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -52,15 +51,15 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <TableView fx:id="tvProductos" prefHeight="422.0" prefWidth="965.0">
+                              <TableView fx:id="tvProductos" prefHeight="565.0" prefWidth="952.0">
                                 <columns>
-                                  <TableColumn fx:id="colCodigo" prefWidth="120.0" text="Código Producto" />
+                                  <TableColumn fx:id="colCodigoProd" prefWidth="120.0" text="Código Producto" />
                                   <TableColumn fx:id="colNombreProd" prefWidth="200.0" text="Nombre Producto" />
                                     <TableColumn fx:id="colUnidadesProd" prefWidth="70.0" text="Stock" />
-                                    <TableColumn prefWidth="90.0" text="Costo" />
-                                    <TableColumn fx:id="colDescripcionProd" prefWidth="90.0" text="Precio" />
-                                    <TableColumn prefWidth="111.0" text="Categoria" />
-                                    <TableColumn prefWidth="280.0" text="Descripcion" />
+                                    <TableColumn fx:id="colCostoProd" prefWidth="90.0" text="Costo" />
+                                    <TableColumn fx:id="colPrecioProd" prefWidth="90.0" text="Precio" />
+                                    <TableColumn fx:id="colCategoriaProd" prefWidth="111.0" text="Categoria" />
+                                    <TableColumn fx:id="colDescripcionProd" prefWidth="280.0" text="Descripcion" />
                                 </columns>
                               </TableView>
                            </children>
@@ -114,19 +113,20 @@
       </HBox>
       <VBox alignment="TOP_CENTER" prefHeight="115.0" prefWidth="195.0">
          <children>
-            <Label text="Valorización Inventario" underline="true">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="15.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="\$250.000.000">
-               <font>
-                  <Font name="System Bold Italic" size="18.0" />
-               </font>
-            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" lineSpacing="10.0" prefHeight="58.0" prefWidth="263.0" text="Valorizacion Inventario" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" lineSpacing="10.0" prefHeight="58.0" prefWidth="263.0" text="\$0" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>
