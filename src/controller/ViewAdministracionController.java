@@ -33,11 +33,7 @@ import model.Producto;
  * @author Tekan
  */
 public class ViewAdministracionController implements Initializable {
-    
-    @FXML
-    private Label labelProductoSeleccionado;
-    
-    
+   
     /* TableView Components */
     
     @FXML
@@ -92,7 +88,7 @@ public class ViewAdministracionController implements Initializable {
     /* Text Field */
     
     @FXML
-    private TextField tfAgregarCategoria;
+    private TextField tfAgregarCategoria = new TextField("");
     
     /* END Text Field*/
     
@@ -119,8 +115,8 @@ public class ViewAdministracionController implements Initializable {
         }
         
         if(evt.equals(btnAgregarCategoria)){
-            if(true){
-            // Check Text Field in blank
+            if(tfAgregarCategoria.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "¡Texto no ingresado! ingrese un nombre de categoría", "Categoría inválida", JOptionPane.ERROR_MESSAGE);
             }
         } 
          
