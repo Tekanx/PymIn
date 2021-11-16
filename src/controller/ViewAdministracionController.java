@@ -138,7 +138,7 @@ public class ViewAdministracionController implements Initializable {
             ArrayList<Producto> productos = new ArrayList();
             productos = DataBase.getProductos();
             for (Producto producto : productos) {
-                contador += producto.getPrecio();
+                contador += (producto.getPrecio() * producto.getStock());
             }
         }catch(Exception Ex){
             Ex.printStackTrace();
