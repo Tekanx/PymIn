@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -49,22 +50,61 @@ public class ViewAdministracionController implements Initializable {
     private TableColumn<Producto, String> colNombreProd= new TableColumn<>("Nombre Producto");
     
     @FXML
-    private TableColumn<Producto, String> colDescripcionProd= new TableColumn<>("Descripción");
+    private TableColumn<Producto, Integer> colUnidadesProd= new TableColumn<>("Stock");
     
     @FXML
-    private TableColumn<Producto, Integer> colUnidadesProd= new TableColumn<>("Unidades");
+    private TableColumn<Producto, String> colCostoProd = new TableColumn<>("Costo");
+    
+    @FXML
+    private TableColumn<Producto, String> colPrecioProd= new TableColumn<>("Precio");
+    
+    @FXML
+    private TableColumn<Producto, String> colCategoriaProd = new TableColumn<>("Categoria");
+    
+    @FXML
+    private TableColumn<Producto, String> colDescripcionProd= new TableColumn<>("Descripción");
+    
+    
+    /* Labels*/
+    
+    @FXML
+    private Label labelValorInventario;
+    
+    /* END Label*/
     
     
    /* Buttons */
-    @FXML
-    private Button btnAgregarProductos;
     
-    @FXML 
-    private Button btnEliminarProductos;
+    @FXML
+    private Button btnGestionarProductos;
+    
+    @FXML
+    private Button btnAgregarCategoria;
+    
+    @FXML
+    private Button btnGenerarReporte;
     
     @FXML
     private Button btnAtras;
     
+    /* END Buttons */
+    
+    /* Text Field */
+    
+    @FXML
+    private TextField tfAgregarCategoria;
+    
+    /* END Text Field*/
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        loadTable();
+        labelValorInventario.setText("$ " + calculateValorInventario());
+    }    
+    
+    /* Methods*/
+    
+     
     @FXML
     private void eventKey(KeyEvent event){
         
@@ -74,29 +114,65 @@ public class ViewAdministracionController implements Initializable {
     private void eventAction(ActionEvent event){
         Object evt = event.getSource();       
         
+        if(evt.equals(btnGestionarProductos)){
+            loadStage("/view/ViewGestionProducto.fxml", event);
+        }
+        
+        if(evt.equals(btnAgregarCategoria)){
+            if(true){
+            // Check Text Field in blank
+            }
+        } 
+         
+        if(evt.equals(btnGenerarReporte)){
+            loadStage("/view/", event);
+        }
+        
         if(evt.equals(btnAtras)){
             loadStage("/view/ViewIngreso.fxml", event);
         }
         
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        loadTable();
-        //tvProductos.getItems().add(new Producto("1564", "Algo", "Si", 15));
-    }    
     
-    /* Methods*/
+    private String calculateValorInventario() {
+        String valor = "0";
+        Double contador = 0.0;
+        try{
+            ArrayList<Producto> productos = new ArrayList();
+            productos = DataBase.getProductos();
+            for (Producto producto : productos) {
+                contador += producto.getPrecio();
+            }
+        }catch(Exception Ex){
+            Ex.printStackTrace();
+            return valor;
+        }
+        return valor = Double.toString(contador);
+    }
+    
     
     private void loadTable(){
+        /* 
+    @FXML
+    private TableColumn<Producto, String> colCostoProd = new TableColumn<>("Costo");
+    
+    @FXML
+    private TableColumn<Producto, String> colPrecioProd= new TableColumn<>("Precio");
+    
+    @FXML
+    private TableColumn<Producto, String> colCategoriaProd = new TableColumn<>("Categoria");*/
         try{
             ArrayList<Producto> productos = new ArrayList();
             productos = DataBase.getProductos();
             
             colCodigoProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("codigo"));
             colNombreProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
-            colDescripcionProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("descripcion"));
             colUnidadesProd.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("stock"));
+            colCostoProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("costo"));
+            colPrecioProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("precio"));
+            colCategoriaProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("categoria"));
+            colDescripcionProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("descripcion"));
             
             ObservableList dataProductos = FXCollections.observableList(productos); 
             tvProductos.setItems(dataProductos);
@@ -124,7 +200,4 @@ public class ViewAdministracionController implements Initializable {
             JOptionPane.showMessageDialog(null, "Error de carga de Escena: \n" + ex,"ERROR DE CARGA",JOptionPane.WARNING_MESSAGE);
         }
     } 
-    
-    
-    
 }
