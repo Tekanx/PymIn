@@ -15,7 +15,7 @@ import model.RegistroVentas;
  *
  * @author Tekan
  */
-public class Main extends Application{
+public class main extends Application{
     
     public static Inventario MapaProductos = new Inventario();
     public static RegistroVentas MapaVentas = new RegistroVentas();
