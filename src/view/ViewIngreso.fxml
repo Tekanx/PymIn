@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -11,7 +12,7 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="840.0" style="-fx-border-style: line; -fx-border-color: #696969; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewIngresoController">
    <children>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="420.0" style="-fx-background-color: #bfb8a3;">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="420.0" style="-fx-background-color: #ffdead;">
          <children>
             <Label fx:id="tfBienvenido" text="¡Bienvenido a PymIn!">
                <font>
@@ -54,12 +55,15 @@
             </Button>
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="420.0" style="-fx-background-color: #30373e;">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="420.0" style="-fx-background-color: #D2691E;">
          <children>
             <ImageView fitHeight="49.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagenes/PyminLogo.png" />
                </image>
+               <effect>
+                  <Reflection />
+               </effect>
             </ImageView>
          </children>
       </VBox>
