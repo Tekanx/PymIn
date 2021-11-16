@@ -83,9 +83,6 @@ public class ViewVentaController implements Initializable {
         
     }
     
-    private void loadStage(String url, Event event, ArrayList<ProductoVendido> listaProductos){
-    }
-    
     private void loadStage(String url, Event event){
         try{
             Stage stage = (Stage) ((Node)(event.getSource())).getScene().getWindow();

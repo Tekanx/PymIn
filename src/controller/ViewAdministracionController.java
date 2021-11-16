@@ -149,19 +149,10 @@ public class ViewAdministracionController implements Initializable {
     
     
     private void loadTable(){
-        /* 
-    @FXML
-    private TableColumn<Producto, String> colCostoProd = new TableColumn<>("Costo");
-    
-    @FXML
-    private TableColumn<Producto, String> colPrecioProd= new TableColumn<>("Precio");
-    
-    @FXML
-    private TableColumn<Producto, String> colCategoriaProd = new TableColumn<>("Categoria");*/
+
         try{
             ArrayList<Producto> productos = new ArrayList();
             productos = DataBase.getProductos();
-            
             colCodigoProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("codigo"));
             colNombreProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
             colUnidadesProd.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("stock"));

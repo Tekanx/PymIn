@@ -11,20 +11,27 @@ public class Producto {
     private Double costo;
     private Double precio;
     private Integer stock;
-    private int categoria;
+    private String categoria;
     private String descripcion;
 
     public Producto() {
+        this.codigo = "0";
+        this.nombre = "none";
+        this.costo = 0.0;
+        this.precio = 0.0;
+        this.stock = 0;
+        this.categoria = "ninguna";
+        this.descripcion = "";
     }
     
-    public Producto(String codigo, String nombre, String descripcion, int stock){
+    /*public Producto(String codigo, String nombre, String descripcion, int stock){
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.stock = stock;
-    }
+    }*/
 
-    public Producto(String codigo, String nombre, Double costo, Double precio, Integer stock, int categoria, String descripcion) {
+    public Producto(String codigo, String nombre, Double costo, Double precio, Integer stock, String categoria, String descripcion) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.costo = costo;
@@ -84,11 +91,11 @@ public class Producto {
         this.stock = stock;
     }
 
-    public int getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(int categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
