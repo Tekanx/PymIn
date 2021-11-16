@@ -76,32 +76,23 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="575.0" prefWidth="210.0">
                <children>
-                  <Button fx:id="btnGestionarProductos" mnemonicParsing="false" onAction="#eventAction" prefHeight="224.0" prefWidth="195.0" style="-fx-background-color: #1e81b0;" text="Agregar, Modificar, Eliminar o Buscar Producto" textFill="WHITE" wrapText="true">
+                  <Button fx:id="btnGestionarProductos" mnemonicParsing="false" onAction="#eventAction" prefHeight="79.0" prefWidth="195.0" style="-fx-background-color: #1e81b0;" text="Gestionar Inventario" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" top="20.0" />
+                        <Insets bottom="10.0" top="75.0" />
                      </VBox.margin>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
-                  </Button>
-                  <TextField fx:id="tfAgregarCategoria" prefHeight="33.0" prefWidth="195.0" />
-                  <Button fx:id="btnAgregarCategoria" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1e81b0;" text="Agregar Categoria" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
                   </Button>
                   <Button fx:id="btnGenerarReporte" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #24a359;" text="Reporte de Ventas" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="10.0" top="100.0" />
                      </VBox.margin>
                   </Button>
                </children>
@@ -125,6 +116,23 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
+                  <HBox alignment="TOP_RIGHT" prefHeight="58.0" prefWidth="665.0">
+                     <children>
+                        <Button fx:id="btnAgregarCategoria" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1e81b0;" text="Agregar Categoria" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <TextField fx:id="tfAgregarCategoria" prefHeight="33.0" prefWidth="195.0">
+                           <HBox.margin>
+                              <Insets right="15.0" top="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
          </children>
