@@ -19,7 +19,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label text="00000000000">
+            <Label fx:id="labelIdBoleta" text="00000000000">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -39,7 +39,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label text="11/11/2021">
+            <Label fx:id="labelFecha" text="11/11/2021">
                <font>
                   <Font name="System Italic" size="16.0" />
                </font>
@@ -47,7 +47,7 @@
                   <Insets left="5.0" />
                </HBox.margin>
             </Label>
-            <Label text="19:20">
+            <Label fx:id="labelHora" text="19:20">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -68,11 +68,11 @@
       </HBox>
       <HBox prefHeight="360.0" prefWidth="490.0">
          <children>
-            <TableView prefHeight="360.0" prefWidth="476.0">
+            <TableView fx:id="tvProdVendidos" prefHeight="360.0" prefWidth="476.0">
               <columns>
-                  <TableColumn prefWidth="83.0" text="cantidad" />
-                <TableColumn prefWidth="247.0" text="nombre producto" />
-                  <TableColumn prefWidth="145.0" text="total parcial" />
+                  <TableColumn fx:id="colCantidadProd" prefWidth="83.0" text="Cantidad" />
+                <TableColumn fx:id="colNombreProd" prefWidth="247.0" text="Nombre Producto" />
+                  <TableColumn fx:id="colTotalParcialProd" prefWidth="145.0" text="Total Parcial" />
               </columns>
             </TableView>
             <ScrollBar orientation="VERTICAL" />
@@ -96,7 +96,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label text="\$0">
+                  <Label fx:id="labelTotalBoleta" text="\$0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -105,7 +105,7 @@
             </HBox>
             <VBox alignment="CENTER" prefHeight="100.0" prefWidth="270.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #24a359;" text="Volver a Ventas" textFill="WHITE">
+                  <Button fx:id="btnVolverVentas" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #24a359;" text="Volver a Ventas" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

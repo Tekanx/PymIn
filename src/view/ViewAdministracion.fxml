@@ -76,7 +76,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="575.0" prefWidth="210.0">
                <children>
-                  <Button fx:id="btnGestionarProductos" mnemonicParsing="false" onAction="#eventAction" prefHeight="79.0" prefWidth="195.0" style="-fx-background-color: #1e81b0;" text="Gestionar Inventario" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                  <Button fx:id="btnGestionarProductos" mnemonicParsing="false" onAction="#eventAction" prefHeight="79.0" prefWidth="195.0" style="-fx-background-color: #1e81b0;" text="Gestionar Producto" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
