@@ -37,15 +37,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="437.0" prefWidth="710.0" style="-fx-background-color: #f4a460; -fx-border-style: line; -fx-border-width: 5; -fx-border-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewGestionProductoController">
+<VBox alignment="TOP_CENTER" prefHeight="437.0" prefWidth="710.0" style="-fx-background-color: #dcdcdc; -fx-border-style: line; -fx-border-width: 5; -fx-border-color: #696969;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewGestionProductoController">
    <children>
       <VBox prefHeight="34.0" prefWidth="710.0">
          <children>
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="711.0" text="Gestión de Productos">
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="711.0" text="Gestión de Productos" underline="true">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
@@ -61,7 +63,7 @@
                         <HBox alignment="CENTER" prefHeight="83.0" prefWidth="14.0" />
                         <VBox alignment="CENTER" prefHeight="83.0" prefWidth="184.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="197.0" text="Código" textAlignment="CENTER">
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="197.0" text="Código" textAlignment="CENTER">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -147,7 +149,7 @@
                   <VBox alignment="CENTER" prefHeight="62.0" prefWidth="218.0" />
                   <VBox alignment="CENTER" prefHeight="77.0" prefWidth="218.0">
                      <children>
-                        <Button fx:id="btnBuscarScan" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Buscar Por Scan" textAlignment="CENTER">
+                        <Button fx:id="btnBuscarScan" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #4682b4;" text="Buscar Por Scan" textAlignment="CENTER" textFill="#fff7f7">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -156,7 +158,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="48.0" prefWidth="218.0">
                      <children>
-                        <Button fx:id="btnBuscarManual" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Buscar Manual">
+                        <Button fx:id="btnBuscarManual" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #4682b4;" text="Buscar Manual" textFill="#fff8f8">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -172,7 +174,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="74.0" prefWidth="236.0">
                <children>
-                  <Button fx:id="btnAgregarProd" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Agregar Producto" textAlignment="CENTER">
+                  <Button fx:id="btnAgregarProd" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #808000;" text="Agregar Producto" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -181,7 +183,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="74.0" prefWidth="236.0">
                <children>
-                  <Button fx:id="btnModificarProd" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Modificar Producto" textAlignment="CENTER">
+                  <Button fx:id="btnModificarProd" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #b8860b;" text="Modificar Producto" textAlignment="CENTER" textFill="#fff4f4">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -190,10 +192,17 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="74.0" prefWidth="236.0">
                <children>
-                  <Button fx:id="btnEliminarProducto" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Eliminar Producto" textAlignment="CENTER">
+                  <Button fx:id="btnEliminarProducto" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #a52a2a;" text="Eliminar Producto" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
+                     <effect>
+                        <DropShadow height="28.02" radius="8.844999999999999" width="9.36">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </DropShadow>
+                     </effect>
                   </Button>
                </children>
             </VBox>
