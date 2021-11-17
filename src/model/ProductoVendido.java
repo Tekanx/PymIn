@@ -61,7 +61,7 @@ public class ProductoVendido {
         this.codigoProducto = codigoProducto;
     }*/
     public Producto Producto() {
-        return producto;
+        return this.producto;
     }
 
     public void setProducto(Producto producto) {
@@ -70,7 +70,7 @@ public class ProductoVendido {
     
 
     public int getCantidad() {
-        return cantidad;
+        return this.cantidad;
     }
 
     public void setCantidad(int cantidad) {
@@ -78,11 +78,11 @@ public class ProductoVendido {
     }
     
     public String getCodigoProducto() {
-       return producto.getCodigo();
+       return this.producto.getCodigo();
     }
     
-    public Integer getStock() {
-        return producto.getStock();
+    public int getStock() {
+        return this.producto.getStock();
     }
     
     public double getPrecioTotal(){
