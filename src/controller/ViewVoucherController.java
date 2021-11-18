@@ -7,7 +7,12 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -17,10 +22,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import static main.main.DataBase;
 import model.Boleta;
+import model.Producto;
 import model.ProductoVendido;
 
 /**
@@ -33,10 +44,33 @@ public class ViewVoucherController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    Boleta boleta = new Boleta();
     
     @FXML
     private Button btnVolverVentas;
+    
+    @FXML 
+    private Label labelIdBoleta;
+    
+    @FXML
+    private Label labelFecha;
+    
+    @FXML 
+    private Label labelHora;
+    
+    @FXML 
+    private Label labelTotalBoleta;
+    
+    @FXML
+    private TableView<ProductoVendido> tvProdVendidos = new TableView();
+    
+    @FXML
+    private TableColumn<ProductoVendido, Integer> colCantidadProd = new TableColumn();
+    
+    @FXML
+    private TableColumn<ProductoVendido, String> colNombreProd = new TableColumn();
+    
+    @FXML
+    private TableColumn<ProductoVendido, Double> colTotalParcialProd = new TableColumn();
     
      @FXML
     private void eventKey(KeyEvent event){
@@ -81,7 +115,23 @@ public class ViewVoucherController implements Initializable {
         }
     } 
     
-    public void loadBoleta(Boleta boletaCreada){
-        
+    public void loadBoleta(Boleta boleta){
+        labelIdBoleta.setText(Integer.toString(boleta.getId()));
+        labelTotalBoleta.setText("$"+Double.toString(boleta.getTotalVenta()));
+        LocalDate hoy = boleta.getFecha();
+        //labelFecha.setText(hoy.);
+        //labelHora.setText("");
+        try{
+            ArrayList<ProductoVendido> productos = new ArrayList();
+            productos = boleta.getListaProductos();
+            colCantidadProd.setCellValueFactory(new PropertyValueFactory<ProductoVendido,Integer>("codigoP"));
+            colNombreProd.setCellValueFactory(new PropertyValueFactory<ProductoVendido,String>("nombreP"));
+            colTotalParcialProd.setCellValueFactory(new PropertyValueFactory<ProductoVendido,Double>("precioP"));
+            
+            ObservableList dataProductos = FXCollections.observableList(productos); 
+            tvProdVendidos.setItems(dataProductos);
+        }catch(Exception SQLEx){
+            SQLEx.printStackTrace();
+        }
     }
 }

@@ -7,6 +7,8 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -91,7 +93,7 @@ public class ViewVentaController implements Initializable {
     /* Labels */
     
     @FXML 
-    private Label labelPrecioTotal = new Label("$0");
+    private Label labelPrecioTotal = new Label("0");
     
     /* END Labels */
     
@@ -109,19 +111,19 @@ public class ViewVentaController implements Initializable {
         }
         
         if(evt.equals(btnPagoEfectivo)){
-            //generarBoleta("Efectivo");
-            loadStage("/view/ViewVoucher.fxml", event);
+            generarBoleta("Efectivo");
+            ((Node)(event.getSource())).getScene().getWindow().hide();
         }
         
         if(evt.equals(btnPagoTarjeta)){
-            //generarBoleta("Tarjeta");
-            loadStage("/view/ViewVoucher.fxml", event);
+            generarBoleta("Tarjeta");
+            ((Node)(event.getSource())).getScene().getWindow().hide();
         }
         
         if(evt.equals(btnPagoTransferencia)){
             //TO DO Confirmación de Pago realizado
-            //generarBoleta("Transferencia");
-            loadStage("/view/ViewVoucher.fxml", event);
+            generarBoleta("Transferencia");
+            ((Node)(event.getSource())).getScene().getWindow().hide();
         }
         
         if(evt.equals(btnAgregarProducto)){
@@ -223,15 +225,41 @@ public class ViewVentaController implements Initializable {
             JOptionPane.showMessageDialog(null, "Error de carga de Escena: \n" + ex,"ERROR DE CARGA",JOptionPane.WARNING_MESSAGE);
         }
     } 
+    private void loadStage(Parent url){
+        try{
+            Stage stage = new Stage();
+           
+            Scene scene = new Scene(url);
+            stage.setScene(scene);
+            stage.show();
+            
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error de carga de Escena: \n" + ex,"ERROR DE CARGA",JOptionPane.WARNING_MESSAGE);
+        }
+    } 
 
     private void generarBoleta(String medioPago) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ViewVoucher.fxml"));
-        ViewVoucherController voucherController = loader.getController();
-        for(ProductoVendido producto : listadoProductos){
-            boleta.addProductoVendido(producto.getProducto(), producto.getCantidad());
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ViewVoucher.fxml"));
+            Parent root = loader.load();
+            ViewVoucherController voucherController = loader.getController();
+            
+            for(ProductoVendido producto : listadoProductos){
+                boleta.addProductoVendido(producto.getProducto(), producto.getCantidad());
+            }
+            boleta.setMedioPago(medioPago);
+            boleta.setTotalVenta(Double.parseDouble(labelPrecioTotal.getText()));
+            boleta.setFecha(LocalDate.EPOCH);
+            boleta.setHora(LocalTime.NOON);
+            boleta.setId(DataBase.getUltimoIdBoleta() + 1);
+            voucherController.loadBoleta(boleta);
+            
+            loadStage(root);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error de carga de Escena: \n" + ex,"ERROR DE CARGA",JOptionPane.WARNING_MESSAGE);
         }
         
-        voucherController.loadBoleta(boleta);
     }
 
     private String vistaScanner() {

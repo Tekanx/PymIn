@@ -95,7 +95,7 @@ public class ProductoVendido {
     }
 
     public Double getTotalParcial() {
-        return (this.precioP * this.cantidad);
+        return this.totalParcial = (this.precioP * this.cantidad);
     }
     
     public void setPrecioP(Double precioP) {
