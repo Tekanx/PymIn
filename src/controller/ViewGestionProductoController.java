@@ -21,6 +21,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import static main.main.DataBase;
+import model.Producto;
 /**
  * FXML Controller class
  *
@@ -52,6 +54,24 @@ public class ViewGestionProductoController implements Initializable {
     @FXML
     private void eventKey(KeyEvent event){
     }
+ 
+    /* Text Field */
+    @FXML 
+    private TextField tfCodigoProd = new TextField("");
+    
+    @FXML
+    private TextField tfNombreProd = new TextField("");
+    
+    @FXML
+    private TextField tfStockProd = new TextField("");
+    
+    @FXML
+    private TextField tfCostoProd = new TextField("");
+    
+    @FXML
+    private TextField tfPrecioProd = new TextField("");
+    
+    
     
     @FXML
     private void eventAction(ActionEvent event){
@@ -62,7 +82,11 @@ public class ViewGestionProductoController implements Initializable {
         }
         
         if(evt.equals(btnBuscarScan)){
-            //loadStage("/view/ViewVenta.fxml", event);
+            if(tfCodigoProd.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "¡Código no ingresado! Ingrese un codigo de producto", "Sin Código", JOptionPane.ERROR_MESSAGE);
+            }else{
+                mostrarProducto(tfCodigoProd.getText());
+            }
         }
         
         if(evt.equals(btnBuscarManual)){
@@ -105,5 +129,23 @@ public class ViewGestionProductoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    
+    /*Methods*/
+    public void mostrarProducto(String codigo){
+        Producto producto= DataBase.getProducto(codigo);
+        if(producto.getNombre().equals("none")){
+            JOptionPane.showMessageDialog(null, "¡Código inválido! Este código no está guardado", "Código no existente", JOptionPane.ERROR_MESSAGE);
+        }else{
+            tfPrecioProd.setText(String.valueOf(producto.getPrecio()));
+            tfCostoProd.setText(String.valueOf(producto.getCosto()));
+            tfStockProd.setText(String.valueOf(producto.getStock()));
+            tfNombreProd.setText(producto.getNombre());
+            
+        }
+    }
+    
+    
+    
     
 }
