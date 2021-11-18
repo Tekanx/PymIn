@@ -40,16 +40,15 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="437.0" prefWidth="710.0" style="-fx-background-color: #dcdcdc; -fx-border-style: line; -fx-border-width: 5; -fx-border-color: #696969;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewGestionProductoController">
+<VBox alignment="TOP_CENTER" prefHeight="453.0" prefWidth="710.0" style="-fx-background-color: #dcdcdc; -fx-border-style: line; -fx-border-width: 5; -fx-border-color: #696969;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewGestionProductoController">
    <children>
-      <VBox prefHeight="34.0" prefWidth="710.0">
+      <VBox alignment="CENTER" prefHeight="52.0" prefWidth="701.0" style="-fx-background-color: #d2691e;">
          <children>
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="711.0" text="Gestión de Productos" underline="true">
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="711.0" text="Gestión de Productos" textFill="WHITE">
                <font>
-                  <Font name="System Bold Italic" size="18.0" />
+                  <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
          </children>
@@ -126,7 +125,7 @@
                         <VBox prefHeight="84.0" prefWidth="7.0" />
                         <VBox alignment="CENTER" prefHeight="84.0" prefWidth="172.0">
                            <children>
-                              <ComboBox fx:id="comboxCategoria" prefHeight="39.0" prefWidth="150.0" promptText="Categoría" />
+                              <ComboBox fx:id="comboxCategoria" prefHeight="39.0" prefWidth="150.0" promptText="Categoría" style="-fx-background-color: #ffffff;" />
                            </children>
                         </VBox>
                         <VBox prefHeight="84.0" prefWidth="7.0" />
@@ -196,13 +195,6 @@
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
-                     <effect>
-                        <DropShadow height="28.02" radius="8.844999999999999" width="9.36">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </DropShadow>
-                     </effect>
                   </Button>
                </children>
             </VBox>
@@ -210,10 +202,13 @@
       </HBox>
       <HBox alignment="BOTTOM_CENTER" prefHeight="59.0" prefWidth="710.0">
          <children>
-            <Button fx:id="btnVolverGestionI" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="216.0" text="Volver a gestión de Inventario" textAlignment="CENTER">
+            <Button fx:id="btnVolverGestionI" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="216.0" style="-fx-background-color: #f0ffff;" text="Volver a gestión de Inventario" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
          </children>
       </HBox>

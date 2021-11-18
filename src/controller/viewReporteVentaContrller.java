@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Tekan
  */
-public class ViewReporteVentaController implements Initializable {
+public class viewReporteVentaContrller implements Initializable {
 
     /**
      * Initializes the controller class.
