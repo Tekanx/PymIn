@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #bfb8a3; -fx-border-style: line; -fx-border-width: 5; -fx-border-color: #696969;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewVoucherController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #dcdcdc; -fx-border-style: line; -fx-border-width: 5; -fx-border-color: #696969;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewVoucherController">
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="29.0" prefWidth="490.0">
          <children>
@@ -68,7 +68,7 @@
       </HBox>
       <HBox prefHeight="360.0" prefWidth="490.0">
          <children>
-            <TableView fx:id="tvProdVendidos" prefHeight="360.0" prefWidth="476.0">
+            <TableView fx:id="tvProdVendidos" prefHeight="360.0" prefWidth="476.0" style="-fx-border-color: #808080; -fx-border-style: line; -fx-border-width: 2;">
               <columns>
                   <TableColumn fx:id="colCantidadProd" prefWidth="83.0" text="Cantidad" />
                 <TableColumn fx:id="colNombreProd" prefWidth="247.0" text="Nombre Producto" />

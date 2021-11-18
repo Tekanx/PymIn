@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,7 +15,7 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="840.0" style="-fx-border-style: line; -fx-border-color: #696969; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewIngresoController">
    <children>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="420.0" style="-fx-background-color: #ffdead;">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="420.0" style="-fx-background-color: #dcdcdc;">
          <children>
             <Label fx:id="tfBienvenido" text="¡Bienvenido a PymIn!">
                <font>
@@ -24,21 +27,30 @@
             </Label>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="btnVentas" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eventAction" text="Ingreso a Ventas">
+                  <Button fx:id="btnVentas" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eventAction" style="-fx-background-color: #ffffff; -fx-border-color: #d2691e; -fx-border-width: 1; -fx-border-style: line; -fx-border-radius: 3;" text="Ingreso a Ventas">
                      <VBox.margin>
                         <Insets top="25.0" />
                      </VBox.margin>
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
                   </Button>
-                  <Button fx:id="btnAdmin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eventAction" text="Ingreso a Administración">
+                  <Button fx:id="btnAdmin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eventAction" style="-fx-background-color: #ffffff; -fx-border-color: #d2691e; -fx-border-width: 1; -fx-border-style: line; -fx-border-radius: 3;" text="Ingreso a Administración">
                      <VBox.margin>
                         <Insets top="25.0" />
                      </VBox.margin>
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="NONE" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
                   </Button>
                </children>
                <VBox.margin>
@@ -52,10 +64,13 @@
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="420.0" style="-fx-background-color: #D2691E;">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="420.0" style="-fx-background-color: #d2691e;">
          <children>
             <ImageView fitHeight="49.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                <image>
