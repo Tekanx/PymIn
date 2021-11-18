@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
@@ -86,6 +87,13 @@ public class ViewVentaController implements Initializable {
     
     /* END Buttons*/
     
+    /* Labels */
+    
+    @FXML 
+    private Label labelPrecioTotal = new Label("$0");
+    
+    /* END Labels */
+    
     @FXML
     private void eventKey(KeyEvent event){
         
@@ -100,18 +108,18 @@ public class ViewVentaController implements Initializable {
         }
         
         if(evt.equals(btnPagoEfectivo)){
-            generarBoleta("Efectivo");
+            //generarBoleta("Efectivo");
             loadStage("/view/ViewVoucher.fxml", event);
         }
         
         if(evt.equals(btnPagoTarjeta)){
-            generarBoleta("Tarjeta");
+            //generarBoleta("Tarjeta");
             loadStage("/view/ViewVoucher.fxml", event);
         }
         
         if(evt.equals(btnPagoTransferencia)){
             //TO DO Confirmación de Pago realizado
-            generarBoleta("Transferencia");
+            //generarBoleta("Transferencia");
             loadStage("/view/ViewVoucher.fxml", event);
         }
         
@@ -120,7 +128,7 @@ public class ViewVentaController implements Initializable {
  
             if(addProductoAVender(listadoProductos, producto)){
                 loadTableView(listadoProductos);
-                calculateVenta(listadoProductos);
+                labelPrecioTotal.setText(calculateVenta(listadoProductos));
             }else{
                 JOptionPane.showConfirmDialog(null, "Producto no encontrado", "¡Error!", JOptionPane.WARNING_MESSAGE);
             }
@@ -129,7 +137,7 @@ public class ViewVentaController implements Initializable {
         if(evt.equals(btnEliminarProducto)){
             if(removeProductoAVender(listadoProductos)){
                 loadTableView(listadoProductos);
-                calculateVenta(listadoProductos);
+                labelPrecioTotal.setText(calculateVenta(listadoProductos));
             }else{
                 JOptionPane.showConfirmDialog(null, "Producto no encontrado", "¡Error!", JOptionPane.WARNING_MESSAGE);
             }
@@ -161,7 +169,7 @@ public class ViewVentaController implements Initializable {
                         JOptionPane.showConfirmDialog(null, "No hay suficiente stock! su stock es: " + producto.getStock(), "¡Error!", JOptionPane.WARNING_MESSAGE);
                     }
                 }
-                while(producto.compatibilidadStock(cantidad));
+                while(!producto.compatibilidadStock(cantidad));
                 
             } else {
                 return false;
