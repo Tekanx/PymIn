@@ -4,6 +4,7 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import static main.main.DataBase;
 
 /**
  *
@@ -82,7 +83,7 @@ public class Boleta {
     
     public void addProductoVendido(Producto producto,int cantidad){ 
         for(int i=0; i <listaProductos.size(); i++){ //revisando si ya esta 
-            if(listaProductos.get(i).getCodigoProducto() == producto.getCodigo()){ //si está
+            if(listaProductos.get(i).getCodigoP() == producto.getCodigo()){ //si está
                 ProductoVendido pv = listaProductos.get(i);
                 int aux = listaProductos.get(i).getCantidad()  + cantidad;
                 if(aux < 0){
@@ -91,9 +92,9 @@ public class Boleta {
                    listaProductos.remove(i);
                 }else{
                     if(pv.compatibilidadStock(aux)){
-                        totalVenta-= pv.getPrecioTotal();
-                        pv.setCantidad(aux);
-                        totalVenta+= pv.getPrecioTotal();
+                        totalVenta-= pv.getTotalParcial();
+                        pv.setTotalParcial(aux);
+                        totalVenta+= pv.getTotalParcial();
                     }else{
                         System.out.print("cantidad mayor al stock disponible");
                     }                    
@@ -104,7 +105,7 @@ public class Boleta {
         ProductoVendido prodVendido= new ProductoVendido(id,producto,cantidad);
         if(prodVendido.compatibilidadStock(cantidad)){       
             listaProductos.add(prodVendido);
-            totalVenta+= prodVendido.getPrecioTotal();  
+            totalVenta+= prodVendido.getTotalParcial();  
         }else{
             //mensaje que no se pudo
         }
@@ -112,7 +113,7 @@ public class Boleta {
 
     
     public void addPVendidoBD(ProductoVendido prodVendido){ //añadido desde BD
-        prodVendido.setIdBoleta(id);
+        prodVendido.setIdBoleta(DataBase.getUltimoIdBoleta() + 1);
         listaProductos.add(prodVendido);
     }
     

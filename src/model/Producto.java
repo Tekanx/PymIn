@@ -10,7 +10,7 @@ public class Producto {
     private String nombre;
     private Double costo;
     private Double precio;
-    private Integer stock;
+    private int stock;
     private String categoria;
     private String descripcion;
 
@@ -40,6 +40,13 @@ public class Producto {
         this.categoria = categoria;
         this.descripcion = descripcion;
     }
+
+    public Producto(Double precio, String nombre, String codigo, int stock) {
+        this.precio = precio;
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.stock = stock;
+    }
     
     /* Methods */
 
@@ -52,7 +59,7 @@ public class Producto {
     /* Getters & Setters */
     
     public String getCodigo() {
-        return codigo;
+        return this.codigo;
     }
 
     public void setCodigo(String codigo) {
@@ -60,7 +67,7 @@ public class Producto {
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public void setNombre(String nombre) {
@@ -68,7 +75,7 @@ public class Producto {
     }
 
     public Double getPrecio() {
-        return precio;
+        return this.precio;
     }
 
     public void setPrecio(Double precio) {
@@ -76,7 +83,7 @@ public class Producto {
     }
 
     public Double getCosto() {
-        return costo;
+        return this.costo;
     }
 
     public void setCosto(Double costo) {
@@ -84,7 +91,7 @@ public class Producto {
     }
 
     public Integer getStock() {
-        return stock;
+        return this.stock;
     }
 
     public void setStock(Integer stock) {
@@ -92,7 +99,7 @@ public class Producto {
     }
 
     public String getCategoria() {
-        return categoria;
+        return this.categoria;
     }
 
     public void setCategoria(String categoria) {
@@ -100,14 +107,10 @@ public class Producto {
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return this.descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    
-   
-    
+    }      
 }

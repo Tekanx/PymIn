@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import model.Boleta;
 import model.ProductoVendido;
 
 /**
@@ -32,6 +33,7 @@ public class ViewVoucherController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    Boleta boleta = new Boleta();
     
     @FXML
     private Button btnVolverVentas;
@@ -55,7 +57,7 @@ public class ViewVoucherController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
     
@@ -79,4 +81,7 @@ public class ViewVoucherController implements Initializable {
         }
     } 
     
+    public void loadBoleta(Boleta boletaCreada){
+        
+    }
 }

@@ -45,6 +45,7 @@ public class ViewVentaController implements Initializable {
      * Initializes the controller class.
      */
     ArrayList<ProductoVendido> listadoProductos;
+    Boleta boleta = new Boleta();
     
     /* TableView Components */
     @FXML
@@ -100,7 +101,7 @@ public class ViewVentaController implements Initializable {
     }
     
     @FXML
-    private void eventAction(ActionEvent event){
+    private void eventAction(ActionEvent event) throws CloneNotSupportedException{
         Object evt = event.getSource();       
         
         if(evt.equals(btnAtras)){
@@ -124,9 +125,7 @@ public class ViewVentaController implements Initializable {
         }
         
         if(evt.equals(btnAgregarProducto)){
-            ProductoVendido producto = new ProductoVendido();
- 
-            if(addProductoAVender(listadoProductos, producto)){
+            if(addProductoAVender(listadoProductos)){
                 loadTableView(listadoProductos);
                 labelPrecioTotal.setText(calculateVenta(listadoProductos));
             }else{
@@ -147,21 +146,18 @@ public class ViewVentaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Boleta boleta = new Boleta();
         listadoProductos = new ArrayList<ProductoVendido>();
-        colCodigoProducto.setCellValueFactory(new PropertyValueFactory<ProductoVendido,String>("codigo"));
-        colNombreProducto.setCellValueFactory(new PropertyValueFactory<ProductoVendido,String>("nombre"));
-        colValorProducto.setCellValueFactory(new PropertyValueFactory<ProductoVendido,Double>("precio"));
-        colCantidadProducto.setCellValueFactory(new PropertyValueFactory<ProductoVendido,Integer>("cantidad"));
-        
         
     }    
     
-    private Boolean addProductoAVender(ArrayList<ProductoVendido> listado, ProductoVendido producto){
+    private Boolean addProductoAVender(ArrayList<ProductoVendido> listado) throws CloneNotSupportedException{
+        ProductoVendido producto = new ProductoVendido();
         int cantidad;
         String codigo = JOptionPane.showInputDialog(null, "Ingrese código de Producto", "Agregar Producto a venta", JOptionPane.PLAIN_MESSAGE);
         if(DataBase.getProducto(codigo) != null || !codigo.equals("")) {
-                producto.setProducto(DataBase.getProducto(codigo));
+            Producto productoDB = new Producto();
+            productoDB = DataBase.getProducto(codigo);
+            producto.setProducto(productoDB);
                 do{
                     cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad del Producto", "Cantidad a vender", JOptionPane.PLAIN_MESSAGE)); 
                     
@@ -174,6 +170,7 @@ public class ViewVentaController implements Initializable {
             } else {
                 return false;
             }
+        producto.setCantidad(cantidad);
         listado.add(producto);
         return true;
     }
@@ -183,8 +180,17 @@ public class ViewVentaController implements Initializable {
     }
     
     private void loadTableView(ArrayList<ProductoVendido> listado){
-        ObservableList dataProductos = FXCollections.observableList(listado);
-        tvVentaProductos.setItems(dataProductos);
+        try{
+            colCodigoProducto.setCellValueFactory(new PropertyValueFactory<>("codigoP"));
+            colNombreProducto.setCellValueFactory(new PropertyValueFactory<>("nombreP"));
+            colValorProducto.setCellValueFactory(new PropertyValueFactory<>("precioP"));
+            colCantidadProducto.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+
+            ObservableList dataProductos = FXCollections.observableList(listado);
+            tvVentaProductos.setItems(dataProductos);                
+        }catch(Exception Ex){
+            Ex.printStackTrace();
+        }
     }
     
     private String calculateVenta(ArrayList<ProductoVendido> listado){
@@ -192,7 +198,7 @@ public class ViewVentaController implements Initializable {
         Double precio = 0.0;
         
         for(ProductoVendido producto : listado){
-            precio += producto.getPrecioTotal();
+            precio += producto.getTotalParcial();
         }
         
         return valor = Double.toString(precio);
@@ -219,7 +225,13 @@ public class ViewVentaController implements Initializable {
     } 
 
     private void generarBoleta(String medioPago) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ViewVoucher.fxml"));
+        ViewVoucherController voucherController = loader.getController();
+        for(ProductoVendido producto : listadoProductos){
+            boleta.addProductoVendido(producto.getProducto(), producto.getCantidad());
+        }
+        
+        voucherController.loadBoleta(boleta);
     }
 
     private String vistaScanner() {
