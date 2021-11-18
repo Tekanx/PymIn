@@ -104,7 +104,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <TextArea prefHeight="200.0" prefWidth="200.0" />
+                              <TextArea fx:id="taDescripcionProd" prefHeight="200.0" prefWidth="200.0" />
                            </children>
                         </VBox>
                      </children>

@@ -7,7 +7,10 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -19,6 +22,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import static main.main.DataBase;
@@ -71,6 +76,13 @@ public class ViewGestionProductoController implements Initializable {
     @FXML
     private TextField tfPrecioProd = new TextField("");
     
+    /* ComboBox*/
+    @FXML
+    private ComboBox comboxCategoria ;
+    
+    /* TextArea*/
+    @FXML
+    private TextArea taDescripcionProd = new TextArea("");
     
     
     @FXML
@@ -90,10 +102,17 @@ public class ViewGestionProductoController implements Initializable {
         }
         
         if(evt.equals(btnBuscarManual)){
-            
+            if(tfCodigoProd.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "¡Código no ingresado! Ingrese un codigo de producto", "Sin Código", JOptionPane.ERROR_MESSAGE);
+            }else{
+                mostrarProducto(tfCodigoProd.getText());
+            }
         }
         
         if(evt.equals(btnAgregarProd)){
+            if(comprobarCampos()){
+               agregarProducto(); 
+            }
             
         }
         
@@ -101,9 +120,6 @@ public class ViewGestionProductoController implements Initializable {
             
         }
         
-        if(evt.equals(btnVolverGestionI)){
-            
-        }
     }
     
     
@@ -128,6 +144,10 @@ public class ViewGestionProductoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        /*ArrayList<String> categorias=DataBase.getCategorias();
+        ObservableList nombresCategorias = FXCollections.observableList(categorias);
+        comboxCategoria=new ComboBox(nombresCategorias);*/
+
     }    
     
     
@@ -135,17 +155,75 @@ public class ViewGestionProductoController implements Initializable {
     public void mostrarProducto(String codigo){
         Producto producto= DataBase.getProducto(codigo);
         if(producto.getNombre().equals("none")){
-            JOptionPane.showMessageDialog(null, "¡Código inválido! Este código no está guardado", "Código no existente", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "¡Código inválido! Este código no está guardado", "Código no existente", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "¡Código inválido! Este código no está guardado", "Código no existente", JOptionPane.WARNING_MESSAGE);
         }else{
             tfPrecioProd.setText(String.valueOf(producto.getPrecio()));
             tfCostoProd.setText(String.valueOf(producto.getCosto()));
             tfStockProd.setText(String.valueOf(producto.getStock()));
             tfNombreProd.setText(producto.getNombre());
+            comboxCategoria.getSelectionModel().select(producto.getCategoria());
+            taDescripcionProd.setText(producto.getDescripcion());
             
         }
     }
     
     
+    public boolean comprobarCampos(){
+        ArrayList<String> faltantes = new ArrayList();
+        if(tfCodigoProd.getText().equals("")){
+            faltantes.add("-Codigo");
+        }
+        if(tfNombreProd.getText().equals("")){
+            faltantes.add("-Nombre");
+        }
+        if(tfPrecioProd.getText().equals("")){
+          faltantes.add("-Precio");
+        }
+        if(tfCostoProd.getText().equals("")){
+            faltantes.add("-Costo");
+        }
+        if(tfStockProd.getText().equals("")){
+            faltantes.add("-Stock");
+        }    
+        //comboxCategoria.getText();
+        if(faltantes.isEmpty()){
+            return true;
+        }else{
+            String mensaje="";
+            for(String atributo:faltantes){
+                mensaje+="\n"+atributo;
+            }
+            JOptionPane.showConfirmDialog(null, "Complete los campos:"+mensaje, "Información Incompleta", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }       
+    }
     
+    public void agregarProducto(){
+        String codigo = tfCodigoProd.getText();
+        Producto producto= DataBase.getProducto(codigo);
+        if(producto.getNombre().equals("none")){
+            String nombre = tfNombreProd.getText();
+            double costo =  Double.parseDouble(tfPrecioProd.getText());
+            double precio =  Double.parseDouble(tfCostoProd.getText());
+            int stock = Integer.valueOf(tfStockProd.getText());
+            String categoria = "ninguna";
+            String descripcion = taDescripcionProd.getText();
+            producto=new Producto(codigo,nombre,costo,precio,stock,categoria,descripcion);
+            DataBase.addProducto(producto);
+            JOptionPane.showConfirmDialog(null, "¡Producto Agregado exitosamente!", "Producto Añadido", JOptionPane.WARNING_MESSAGE);
+            tfCodigoProd.setText("");
+            tfPrecioProd.setText("");
+            tfCostoProd.setText("");
+            tfStockProd.setText("");
+            tfNombreProd.setText("");
+            comboxCategoria.getSelectionModel().select("");
+            taDescripcionProd.setText("");
+            
+        }else{
+           JOptionPane.showConfirmDialog(null, "Este producto ya existe", "Producto existente", JOptionPane.WARNING_MESSAGE); 
+        }
+    }
+            
     
 }
