@@ -305,10 +305,10 @@ public class ConexionBD {
             //Se guardan los productos vendidos en la base de datos con el idboleta correspondiente
             for(int i=0 ; i<boleta.getListaProductos().size() ; i++) {
                 ProductoVendido prodVendido = boleta.getListaProductos().get(i);
-                query = "INSERT INTO prodvendido (idBoleta,codigoP,cantidad) values('"+id+"','"+prodVendido.getCodigoProducto()+"','"+prodVendido.getCantidad()+"')"; 
+                query = "INSERT INTO prodvendido (idBoleta,codigoP,cantidad) values('"+id+"','"+prodVendido.getCodigoP()+"','"+prodVendido.getCantidad()+"')"; 
                 st.executeUpdate(query);
                 //Se descuenta la cantidad vendida al stock del producto
-                updateStock(prodVendido.getCodigoProducto(),-prodVendido.getCantidad());
+                updateStock(prodVendido.getCodigoP(),-prodVendido.getCantidad());
             }      
         }catch(Exception ex){
             ex.printStackTrace();

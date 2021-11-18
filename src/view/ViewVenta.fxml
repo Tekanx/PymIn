@@ -82,13 +82,21 @@
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="labelPrecioTotal" text="\$0">
+            <Label text="\$">
                <HBox.margin>
-                  <Insets left="5.0" right="10.0" top="10.0" />
+                  <Insets left="5.0" right="5.0" top="10.0" />
                </HBox.margin>
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
+            </Label>
+            <Label fx:id="labelPrecioTotal" text="0">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
             </Label>
          </children>
       </HBox>
