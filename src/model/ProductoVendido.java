@@ -6,68 +6,58 @@ package model;
  * @author Tekan
  */
 public class ProductoVendido {
-   // private int idVenta;
-    private int idBoleta;
-    //private String codigoProducto;
+    private int idBoleta;  
     private Producto producto;
     private int cantidad;
+    private Double precioP;
+    private String nombreP;
+    private String codigoP;
+    private Double totalParcial;
 
     public ProductoVendido() {
         this.idBoleta = 0;
-        //this.codigoProducto = "0";
         this.cantidad = 0;
     }
 
-    public ProductoVendido(/*int idVenta,*/ int idBoleta, /*String codigoProducto*/ Producto producto, int cantidad) {
-        //this.idVenta = idVenta;
+    public ProductoVendido(int idBoleta,Producto producto, int cantidad) {    
         this.idBoleta = idBoleta;
-        //this.codigoProducto = codigoProducto;
         this.producto= producto;
         this.cantidad = cantidad;
-        //falta ver si cantidad es posible dependiendo el stock
+        this.codigoP= producto.getCodigo();
+        this.nombreP = producto.getNombre();
+        this.precioP = producto.getPrecio();
+        this.totalParcial= this.precioP*cantidad;
     }
 
     /* Methods */
 
     @Override
     public String toString() {
-        //return "ProductoVendido{" /*+ "idVenta=" + idVenta*/ + ", idBoleta=" + idBoleta + ", codigoProducto=" + codigoProducto + ", cantidad=" + cantidad + '}';
-        return "ProductoVendido{" /*+ "idVenta=" + idVenta*/ + ", idBoleta=" + idBoleta + ", codigoProducto=" + producto.getCodigo() + ", cantidad=" + cantidad + '}';
+        return "ProductoVendido{" /*+ "idVenta=" + idVenta*/ + " idBoleta=" + idBoleta + ", codigoProducto=" + producto.getCodigo() + ", cantidad=" + cantidad + '}';
     }
     
     /* Getters & Setters */
     
-    /*public int getIdVenta() {
-        return idVenta;
-    }
-
-    public void setIdVenta(int idVenta) {
-        this.idVenta = idVenta;
-    }*/
-
     public int getIdBoleta() {
         return idBoleta;
     }
-
+    
+    /**@param idBoleta the idBoleta to set */
     public void setIdBoleta(int idBoleta) {
         this.idBoleta = idBoleta;
     }
 
-    /*public String getCodigoProducto() {
-        return codigoProducto;
-    }
-
-    public void setCodigoProducto(String codigoProducto) {
-        this.codigoProducto = codigoProducto;
-    }*/
     public Producto Producto() {
         return this.producto;
     }
 
     public void setProducto(Producto producto) {
         this.producto = producto;
+        this.codigoP= producto.getCodigo();
+        this.nombreP = producto.getNombre();
+        this.precioP = producto.getPrecio();
+        
     }
-    
 
     public int getCantidad() {
         return this.cantidad;
@@ -75,10 +65,19 @@ public class ProductoVendido {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+        this.totalParcial= this.precioP*cantidad;
     }
     
     public String getCodigoProducto() {
-       return this.producto.getCodigo();
+       return this.codigoP;
+    }
+    
+    public String getoNmbreProducto() {
+       return this.nombreP;
+    }
+    
+    public Double getPrecioProducto() {
+       return this.precioP;
     }
     
     public int getStock() {
@@ -86,9 +85,7 @@ public class ProductoVendido {
     }
     
     public double getPrecioTotal(){
-        double precioTotal;
-        precioTotal= producto.getPrecio()*cantidad;
-        return precioTotal;
+        return totalParcial;
     }
     public boolean compatibilidadStock(int cantidad){
         if(cantidad > producto.getStock()){
