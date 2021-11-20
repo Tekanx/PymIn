@@ -38,7 +38,7 @@
                         <InnerShadow />
                      </effect>
                   </Button>
-                  <Button fx:id="btnAdmin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eventAction" style="-fx-background-color: #ffffff; -fx-border-color: #d2691e; -fx-border-width: 1; -fx-border-style: line; -fx-border-radius: 3;" text="Ingreso a Administración">
+                  <Button fx:id="btnAdmin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eventAction" style="-fx-background-color: #ffffff; -fx-border-color: #d2691e; -fx-border-width: 1; -fx-border-style: line; -fx-border-radius: 3;" text="Control de Inventario">
                      <VBox.margin>
                         <Insets top="25.0" />
                      </VBox.margin>
@@ -52,6 +52,20 @@
                         <InnerShadow />
                      </effect>
                   </Button>
+                  <Button fx:id="btnReporte" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eventAction" style="-fx-background-color: #ffffff; -fx-border-color: #d2691e; -fx-border-width: 1; -fx-border-style: line; -fx-border-radius: 3;" text="Reporte de Ventas">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="NONE" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
                <VBox.margin>
                   <Insets left="60.0" right="60.0" />
@@ -59,7 +73,7 @@
             </VBox>
             <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#eventAction" prefHeight="40.0" prefWidth="250.0" text="Salir">
                <VBox.margin>
-                  <Insets />
+                  <Insets top="25.0" />
                </VBox.margin>
                <font>
                   <Font name="System Bold" size="18.0" />
