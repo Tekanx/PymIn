@@ -78,9 +78,6 @@ public class ViewAdministracionController implements Initializable {
     private Button btnAgregarCategoria;
     
     @FXML
-    private Button btnGenerarReporte;
-    
-    @FXML
     private Button btnAtras;
     
     /* END Buttons */
@@ -117,13 +114,12 @@ public class ViewAdministracionController implements Initializable {
         if(evt.equals(btnAgregarCategoria)){
             if(tfAgregarCategoria.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "¡Texto no ingresado! ingrese un nombre de categoría", "Categoría inválida", JOptionPane.ERROR_MESSAGE);
+            }else{
+                agregarCategoria();
             }
+            tfAgregarCategoria.setText("");
         } 
          
-        if(evt.equals(btnGenerarReporte)){
-            loadStage("/view/", event);
-        }
-        
         if(evt.equals(btnAtras)){
             loadStage("/view/ViewIngreso.fxml", event);
         }
@@ -187,4 +183,22 @@ public class ViewAdministracionController implements Initializable {
             JOptionPane.showMessageDialog(null, "Error de carga de Escena: \n" + ex,"ERROR DE CARGA",JOptionPane.WARNING_MESSAGE);
         }
     } 
+    
+    public void agregarCategoria(){
+        ArrayList<String> categorias = DataBase.getCategorias();
+        Boolean existe=false;
+        for (String categoria: categorias){
+            if (tfAgregarCategoria.getText().equals(categoria)){
+                existe=true;
+                JOptionPane.showConfirmDialog(null, "¡Esta categoria ya existe!La categoria "+tfAgregarCategoria.getText()+" ya existe", "Categoria Existente", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
+        if(!existe){
+            DataBase.addCategoria(tfAgregarCategoria.getText());
+            JOptionPane.showConfirmDialog(null, "Has Agregado la categoría "+tfAgregarCategoria.getText(), "Categoria Agregada", JOptionPane.WARNING_MESSAGE);
+            
+        }
+        
+    }
 }

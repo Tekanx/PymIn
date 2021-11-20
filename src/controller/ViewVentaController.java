@@ -272,6 +272,7 @@ public class ViewVentaController implements Initializable {
             boleta.setFecha(LocalDate.now());
             boleta.setHora(LocalTime.now());
             boleta.setId(DataBase.getUltimoIdBoleta() + 1);
+            DataBase.addBoleta(boleta);
             voucherController.loadBoleta(boleta);
             
             loadStage(root);

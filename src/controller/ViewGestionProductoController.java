@@ -144,11 +144,6 @@ public class ViewGestionProductoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cargarCategorias();
-        // TODO
-        /*ArrayList<String> categorias=DataBase.getCategorias();
-        ObservableList nombresCategorias = FXCollections.observableList(categorias);
-        comboxCategoria=new ComboBox(nombresCategorias);*/
-
     }    
     
     
@@ -162,7 +157,6 @@ public class ViewGestionProductoController implements Initializable {
     public void mostrarProducto(String codigo){
         Producto producto= DataBase.getProducto(codigo);
         if(producto.getNombre().equals("none")){
-            //JOptionPane.showMessageDialog(null, "¡Código inválido! Este código no está guardado", "Código no existente", JOptionPane.ERROR_MESSAGE);
             JOptionPane.showConfirmDialog(null, "¡Código inválido! Este código no está guardado", "Código no existente", JOptionPane.WARNING_MESSAGE);
         }else{
             tfPrecioProd.setText(String.valueOf(producto.getPrecio()));
@@ -193,7 +187,6 @@ public class ViewGestionProductoController implements Initializable {
         if(tfStockProd.getText().equals("")){
             faltantes.add("-Stock");
         }    
-        //comboxCategoria.getText();
         if(faltantes.isEmpty()){
             return true;
         }else{
@@ -219,17 +212,20 @@ public class ViewGestionProductoController implements Initializable {
             producto=new Producto(codigo,nombre,costo,precio,stock,categoria,descripcion);
             DataBase.addProducto(producto);
             JOptionPane.showConfirmDialog(null, "¡Producto Agregado exitosamente!", "Producto Añadido", JOptionPane.WARNING_MESSAGE);
-            tfCodigoProd.setText("");
-            tfPrecioProd.setText("");
-            tfCostoProd.setText("");
-            tfStockProd.setText("");
-            tfNombreProd.setText("");
-            comboxCategoria.getSelectionModel().select("");
-            taDescripcionProd.setText("");
+            vaciarCampos();
             
         }else{
            JOptionPane.showConfirmDialog(null, "Este producto ya existe", "Producto existente", JOptionPane.WARNING_MESSAGE); 
         }
+    }
+    public void vaciarCampos(){
+        tfCodigoProd.setText("");
+        tfPrecioProd.setText("");
+        tfCostoProd.setText("");
+        tfStockProd.setText("");
+        tfNombreProd.setText("");
+        comboxCategoria.getSelectionModel().select("");
+        taDescripcionProd.setText("");
     }
             
     
