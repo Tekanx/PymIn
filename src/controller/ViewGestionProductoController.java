@@ -78,7 +78,7 @@ public class ViewGestionProductoController implements Initializable {
     
     /* ComboBox*/
     @FXML
-    private ComboBox comboxCategoria ;
+    private ComboBox comboxCategoria;
     
     /* TextArea*/
     @FXML
@@ -143,6 +143,7 @@ public class ViewGestionProductoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cargarCategorias();
         // TODO
         /*ArrayList<String> categorias=DataBase.getCategorias();
         ObservableList nombresCategorias = FXCollections.observableList(categorias);
@@ -152,6 +153,12 @@ public class ViewGestionProductoController implements Initializable {
     
     
     /*Methods*/
+    public void cargarCategorias(){
+        ArrayList<String> categorias = DataBase.getCategorias();
+        ObservableList dataCategorias = FXCollections.observableList(categorias);
+        comboxCategoria.setItems(dataCategorias);
+    }
+    
     public void mostrarProducto(String codigo){
         Producto producto= DataBase.getProducto(codigo);
         if(producto.getNombre().equals("none")){

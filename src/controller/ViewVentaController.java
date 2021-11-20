@@ -160,25 +160,44 @@ public class ViewVentaController implements Initializable {
             Producto productoDB = new Producto();
             productoDB = DataBase.getProducto(codigo);
             producto.setProducto(productoDB);
-                do{
-                    cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad del Producto", "Cantidad a vender", JOptionPane.PLAIN_MESSAGE)); 
+            do{
+                cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad del Producto", "Cantidad a vender", JOptionPane.PLAIN_MESSAGE)); 
                     
-                    if(!producto.compatibilidadStock(cantidad)){
-                        JOptionPane.showConfirmDialog(null, "No hay suficiente stock! su stock es: " + producto.getStock(), "¡Error!", JOptionPane.WARNING_MESSAGE);
-                    }
+                if(!producto.compatibilidadStock(cantidad)){
+                    JOptionPane.showConfirmDialog(null, "No hay suficiente stock! su stock es: " + producto.getStock(), "¡Error!", JOptionPane.WARNING_MESSAGE);
                 }
-                while(!producto.compatibilidadStock(cantidad));
-                
+            }
+            while(!producto.compatibilidadStock(cantidad));     
             } else {
                 return false;
             }
+        /* Para actualizar producto existente en el listado, TO DO, no funca :(
+        for(ProductoVendido prod : listado){
+            if(prod.getCodigoP().equals(codigo)){
+                producto.setCantidad(producto.getCantidad() + cantidad);
+                listado.remove(prod);
+                listado.add(prod);
+                return true;
+            }
+        }
+        */
         producto.setCantidad(cantidad);
         listado.add(producto);
         return true;
     }
     
     private Boolean removeProductoAVender(ArrayList<ProductoVendido> listado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ProductoVendido prodVenta = new ProductoVendido();
+        String codigo = JOptionPane.showInputDialog(null, "Ingrese código de Producto a remover de la venta", "Remover Producto de venta", JOptionPane.PLAIN_MESSAGE);
+
+        for(int i = 0 ; i < listado.size() ; i++){
+            prodVenta = listado.get(i);
+            if(prodVenta.getCodigoP().equals(codigo)){
+                listado.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
     
     private void loadTableView(ArrayList<ProductoVendido> listado){
@@ -250,8 +269,8 @@ public class ViewVentaController implements Initializable {
             }
             boleta.setMedioPago(medioPago);
             boleta.setTotalVenta(Double.parseDouble(labelPrecioTotal.getText()));
-            boleta.setFecha(LocalDate.EPOCH);
-            boleta.setHora(LocalTime.NOON);
+            boleta.setFecha(LocalDate.now());
+            boleta.setHora(LocalTime.now());
             boleta.setId(DataBase.getUltimoIdBoleta() + 1);
             voucherController.loadBoleta(boleta);
             

@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -119,12 +120,13 @@ public class ViewVoucherController implements Initializable {
         labelIdBoleta.setText(Integer.toString(boleta.getId()));
         labelTotalBoleta.setText("$"+Double.toString(boleta.getTotalVenta()));
         LocalDate hoy = boleta.getFecha();
-        //labelFecha.setText(hoy.);
-        //labelHora.setText("");
+        LocalTime hora = boleta.getHora();
+        labelFecha.setText(hoy.getDayOfMonth() + "/" + hoy.getMonthValue() + "/" + hoy.getYear());
+        labelHora.setText(hora.getHour() + ":" + hora.getMinute());
         try{
             ArrayList<ProductoVendido> productos = new ArrayList();
             productos = boleta.getListaProductos();
-            colCantidadProd.setCellValueFactory(new PropertyValueFactory<ProductoVendido,Integer>("codigoP"));
+            colCantidadProd.setCellValueFactory(new PropertyValueFactory<ProductoVendido,Integer>("cantidad"));
             colNombreProd.setCellValueFactory(new PropertyValueFactory<ProductoVendido,String>("nombreP"));
             colTotalParcialProd.setCellValueFactory(new PropertyValueFactory<ProductoVendido,Double>("precioP"));
             

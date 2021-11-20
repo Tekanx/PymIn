@@ -254,12 +254,13 @@ public class ConexionBD {
      * @return list  ArrayList con productos
      **/
      public ArrayList getCategorias(){
-        ArrayList list = new ArrayList();
+        ArrayList<String> list = new ArrayList();
         try{
             String query = "SELECT nombreCategoria FROM categorias";        
             rs = st.executeQuery(query);
             while(rs.next()){
                 String nombreCategoria = rs.getString("nombreCategoria");
+                System.out.println(nombreCategoria);
                 list.add(nombreCategoria);
             }           
         }catch(Exception ex){
