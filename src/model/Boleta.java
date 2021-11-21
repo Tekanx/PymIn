@@ -120,5 +120,8 @@ public class Boleta {
     public ArrayList<ProductoVendido> getListaProductos(){
         return listaProductos;
     }
+    public void setListaProductos(ArrayList<ProductoVendido> listaProductos) {
+        this.listaProductos=listaProductos;
+    }
     
 }

@@ -339,9 +339,9 @@ public class ConexionBD {
      * @return list  ArrayList con boletas
      **/
     public ArrayList getBoletasRange(LocalDate inicio,LocalDate fin){
-        ArrayList list = new ArrayList();
+        ArrayList<Boleta> list = new ArrayList();
         try{
-            String query = "SELECT * FROM boletas WHERE fecha BETWEEN '"+inicio+"' AND '"+fin+"'  ";        
+            String query = "SELECT * FROM boletas WHERE fecha BETWEEN '"+inicio.toString()+"' AND '"+fin.toString()+"'  ";        
             rs = st.executeQuery(query);
             while(rs.next()){            
                 int id= rs.getInt("idboletas");
@@ -350,23 +350,23 @@ public class ConexionBD {
                 LocalTime hora = LocalTime.parse(rs.getString("hora"));
                 String medioPago = rs.getString("medioPago");
                 Boleta boleta = new Boleta(id,total,fecha,hora,medioPago);
-                ConexionBD bd = new ConexionBD();
-                boleta = bd.getProductosVendidosForBoleta(boleta, id);
-
                 list.add(boleta);
+            }
+            for(Boleta boleta:list){
+                boleta.setListaProductos(getProductosVendidosForBoleta(boleta.getId()));
             }
         }catch(Exception ex){
             ex.printStackTrace();
-        }   
+        }
         return list;
     }
     
-    /**Retorna una Boleta con todos las productos vendidos pertenecientes a esta segun el id entregado
-     * @param boleta  boleta a la que se le añaden los Productos Vendidos
+    /**Retorna ArrayList con todos las productos vendidos pertenecientes al id de boleta entregado
      * @param id    id de boleta
-     * @return boleta  boleta con los productos vendidos
+     * @return list lista de productos vendidos
      **/
-    public Boleta getProductosVendidosForBoleta(Boleta boleta, int id){
+    public ArrayList<ProductoVendido> getProductosVendidosForBoleta(int id){
+        ArrayList<ProductoVendido> list = new ArrayList();
         try{       
             String query = "SELECT * FROM prodvendido WHERE idBoleta='"+id+"'";        
             rs = st.executeQuery(query);
@@ -374,14 +374,15 @@ public class ConexionBD {
                 int idv= rs.getInt("idventa");
                 int cantidad = rs.getInt("cantidad");
                 String codigo = rs.getString("codigoP");
-                ConexionBD bd = new ConexionBD();
-                Producto producto = bd.getProducto(codigo);
-                ProductoVendido pv = new ProductoVendido(idv,producto,cantidad);
-                boleta.addPVendidoBD(pv);
+                ProductoVendido pv = new ProductoVendido(idv,codigo,cantidad);
+                list.add(pv);
+            }
+            for(ProductoVendido pv: list){
+                pv.setProducto(getProducto(pv.getCodigoP()));
             }
         }catch(Exception ex){
             ex.printStackTrace();
         } 
-        return boleta;
+        return list;
     }
 }

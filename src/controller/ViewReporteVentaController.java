@@ -30,6 +30,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import static main.main.DataBase;
 import model.Boleta;
+import model.Producto;
 import model.ProductoVendido;
 
 /**
@@ -38,6 +39,12 @@ import model.ProductoVendido;
  * @author Tekan
  */
 public class ViewReporteVentaController implements Initializable {
+    
+    ArrayList<ProductoVendido> listadoProductos=new ArrayList();
+    Double recaudado;
+    Double tarjeta;
+    Double efectivo;
+    Double transferencia;
     
     /* TableView Components */
     @FXML
@@ -97,7 +104,7 @@ public class ViewReporteVentaController implements Initializable {
     
     
     @FXML
-    private void eventAction(ActionEvent event){
+    private void eventAction(ActionEvent event) throws CloneNotSupportedException{
         Object evt = event.getSource();       
         
         if(evt.equals(btnVolverMenu)){
@@ -136,10 +143,42 @@ public class ViewReporteVentaController implements Initializable {
     }    
     
     
-    public void generarReporte(){
+    public void generarReporte() throws CloneNotSupportedException{
+        listadoProductos=new ArrayList();
+        recaudado=0.0 ; efectivo=0.0 ; tarjeta= 0.0; transferencia= 0.0;
         LocalDate inicio = datePInicio.getValue();
-        /*LocalDate fin = datePTermino.getValue();
-        ArrayList<Boleta> boletas = DataBase.getBoletasRange(inicio, fin);*/
+        LocalDate fin = datePTermino.getValue();
+        Producto prod= new Producto();
+        ArrayList<Boleta> boletas = DataBase.getBoletasRange(inicio, fin);
+        //System.out.println(boletas.size()+"\n\n\n");
+        ArrayList<ProductoVendido> pv= new ArrayList();
+        String medioPago;
+        for(Boleta boleta:boletas){
+            medioPago= boleta.getMedioPago();
+            switch (medioPago){
+                case "Efectivo":
+                    efectivo+=boleta.getTotalVenta();
+                    break;
+                case "Tarjeta":
+                    tarjeta+=boleta.getTotalVenta();
+                    break;
+                case "Transferencia":
+                    transferencia+=boleta.getTotalVenta();
+                    break;
+                default:
+                    
+            }
+            recaudado+=boleta.getTotalVenta();
+            pv = boleta.getListaProductos();
+            for(ProductoVendido producto: pv){ // falta ver cuando se repiten :/
+                listadoProductos.add(producto);
+            }
+        }
+        labelTotalRecaudado.setText(Double.toString(recaudado));
+        labelEfectivo.setText(Double.toString(efectivo));
+        labelTarjeta.setText(Double.toString(tarjeta));
+        labelTransferencia.setText(Double.toString(transferencia));
+        loadTableView(listadoProductos);
         //falta trabajar con las boletas <-----------------------------------
         
         //labelTarjeta.setText(inicio.toString());

@@ -29,6 +29,11 @@ public class ProductoVendido {
         this.precioP = producto.getPrecio();
         this.totalParcial= this.precioP*this.cantidad;
     }
+    public ProductoVendido(int idBoleta,String codigoP, int cantidad) {    
+        this.idBoleta = idBoleta;
+        this.codigoP= codigoP;
+        this.cantidad = cantidad;
+    }
 
     /* Methods */
 
