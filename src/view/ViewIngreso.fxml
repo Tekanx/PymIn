@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
@@ -45,9 +44,6 @@
                      <font>
                         <Font size="18.0" />
                      </font>
-                     <cursor>
-                        <Cursor fx:constant="NONE" />
-                     </cursor>
                      <effect>
                         <InnerShadow />
                      </effect>
@@ -56,9 +52,6 @@
                      <font>
                         <Font size="18.0" />
                      </font>
-                     <cursor>
-                        <Cursor fx:constant="NONE" />
-                     </cursor>
                      <effect>
                         <InnerShadow />
                      </effect>
