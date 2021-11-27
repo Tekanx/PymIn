@@ -60,24 +60,18 @@ public class ViewReporteVentaController implements Initializable {
     private TableColumn<ProductoVendido, Integer> colCantidadProd= new TableColumn<>("Cantidad Producto");
     
     @FXML
-    private TableColumn<ProductoVendido, Double> colTotalProd= new TableColumn<>("Total Producto");
-    
-    
-    /* END TableView Components */
-    
-    
+    private TableColumn<ProductoVendido, Double> colTotalProd= new TableColumn<>("Total Producto");   
+    /* END TableView Components */      
 
     /* Buttons*/
     @FXML
     private Button btnVolverMenu;
     
     @FXML
-    private Button btnBuscarFecha;
-    
+    private Button btnBuscarFecha;   
     /* END Buttons*/
     
-    /* Labels */
-    
+    /* Labels */  
     @FXML 
     private Label  labelTotalRecaudado= new Label("0");
     
@@ -88,18 +82,15 @@ public class ViewReporteVentaController implements Initializable {
     private Label  labelTarjeta= new Label("0");
     
     @FXML 
-    private Label  labelTransferencia= new Label("0");
-    
+    private Label  labelTransferencia= new Label("0");    
     /* END Labels */
-    
-    
+        
     /* DatePicker */
     @FXML
     private DatePicker datePInicio;
     
     @FXML
-    private DatePicker datePTermino;
-    
+    private DatePicker datePTermino;  
     /* END DatePicker */
     
     
@@ -117,8 +108,7 @@ public class ViewReporteVentaController implements Initializable {
             }else{
                 generarReporte();
             }
-        }
-        
+        }        
     }
     
     
@@ -139,18 +129,18 @@ public class ViewReporteVentaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
     
     public void generarReporte() throws CloneNotSupportedException{
         listadoProductos=new ArrayList();
         recaudado=0.0 ; efectivo=0.0 ; tarjeta= 0.0; transferencia= 0.0;
+        boolean existe=false;
         LocalDate inicio = datePInicio.getValue();
         LocalDate fin = datePTermino.getValue();
         Producto prod= new Producto();
         ArrayList<Boleta> boletas = DataBase.getBoletasRange(inicio, fin);
-        //System.out.println(boletas.size()+"\n\n\n");
         ArrayList<ProductoVendido> pv= new ArrayList();
         String medioPago;
         for(Boleta boleta:boletas){
@@ -166,22 +156,29 @@ public class ViewReporteVentaController implements Initializable {
                     transferencia+=boleta.getTotalVenta();
                     break;
                 default:
-                    
+                    break;
             }
             recaudado+=boleta.getTotalVenta();
             pv = boleta.getListaProductos();
-            for(ProductoVendido producto: pv){ // falta ver cuando se repiten :/
-                listadoProductos.add(producto);
+            for(ProductoVendido producto: pv){ 
+                existe=false;
+                for (ProductoVendido lp : listadoProductos){
+                    if(lp.getCodigoP().equals(producto.getCodigoP())){
+                        existe=true;
+                        lp.setTotalParcial(lp.getCantidad()+producto.getCantidad());
+                        break;
+                    }
+                }
+                if (existe==false){
+                    listadoProductos.add(producto);
+                }         
             }
         }
         labelTotalRecaudado.setText(Double.toString(recaudado));
         labelEfectivo.setText(Double.toString(efectivo));
         labelTarjeta.setText(Double.toString(tarjeta));
         labelTransferencia.setText(Double.toString(transferencia));
-        loadTableView(listadoProductos);
-        //falta trabajar con las boletas <-----------------------------------
-        
-        //labelTarjeta.setText(inicio.toString());
+        loadTableView(listadoProductos);        
     }
     
     

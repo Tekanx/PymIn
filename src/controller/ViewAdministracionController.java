@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -34,8 +35,7 @@ import model.Producto;
  */
 public class ViewAdministracionController implements Initializable {
    
-    /* TableView Components */
-    
+    /* TableView Components */   
     @FXML
     private TableView<Producto> tvProductos = new TableView<>();
     
@@ -59,18 +59,15 @@ public class ViewAdministracionController implements Initializable {
     
     @FXML
     private TableColumn<Producto, String> colDescripcionProd= new TableColumn<>("Descripción");
+    /*END TableView Components */ 
     
-    
-    /* Labels*/
-    
+    /* Labels*/    
     @FXML
-    private Label labelValorInventario;
-    
+    private Label labelValorInventario;   
     /* END Label*/
     
     
-   /* Buttons */
-    
+   /* Buttons */   
     @FXML
     private Button btnGestionarProductos;
     
@@ -79,20 +76,28 @@ public class ViewAdministracionController implements Initializable {
     
     @FXML
     private Button btnAtras;
-    
-    /* END Buttons */
-    
-    /* Text Field */
-    
+
     @FXML
-    private TextField tfAgregarCategoria = new TextField("");
+    private Button btnFiltrar;  
+    /* END Buttons */
+ 
     
+    /* Text Field */    
+    @FXML
+    private TextField tfAgregarCategoria = new TextField("");   
     /* END Text Field*/
+    
+    /* ComboBox*/
+    @FXML
+    private ComboBox comboxCategoria;
+    /*END ComboBox*/
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loadTable();
+        loadTable(DataBase.getProductos());
         labelValorInventario.setText("$ " + calculateValorInventario());
+        cargarCategorias();
     }    
     
     /* Methods*/
@@ -120,6 +125,10 @@ public class ViewAdministracionController implements Initializable {
             tfAgregarCategoria.setText("");
         } 
          
+        if(evt.equals(btnFiltrar)){
+            filtrar();
+        }
+        
         if(evt.equals(btnAtras)){
             loadStage("/view/ViewIngreso.fxml", event);
         }
@@ -144,11 +153,11 @@ public class ViewAdministracionController implements Initializable {
     }
     
     
-    private void loadTable(){
+    private void loadTable(ArrayList<Producto> productos){
 
         try{
-            ArrayList<Producto> productos = new ArrayList();
-            productos = DataBase.getProductos();
+            /*ArrayList<Producto> productos = new ArrayList();
+            productos = DataBase.getProductos();*/
             colCodigoProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("codigo"));
             colNombreProd.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
             colUnidadesProd.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("stock"));
@@ -198,7 +207,23 @@ public class ViewAdministracionController implements Initializable {
             DataBase.addCategoria(tfAgregarCategoria.getText());
             JOptionPane.showConfirmDialog(null, "Has Agregado la categoría "+tfAgregarCategoria.getText(), "Categoria Agregada", JOptionPane.WARNING_MESSAGE);
             
+        }        
+    }
+    
+    public void cargarCategorias(){
+        ArrayList<String> categorias = DataBase.getCategorias();
+        ObservableList dataCategorias = FXCollections.observableList(categorias);
+        comboxCategoria.setItems(dataCategorias);
+    }
+    
+    public void filtrar(){
+        String cat= (String)comboxCategoria.getValue();
+        ArrayList<String> categorias = DataBase.getCategorias();
+        for (String categoria:categorias){
+            if(cat.equals(categoria)){
+                loadTable(DataBase.getProductosForCategoria(categoria));
+                return;
+            }
         }
-        
     }
 }

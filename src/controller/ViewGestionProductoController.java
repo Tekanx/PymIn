@@ -112,11 +112,14 @@ public class ViewGestionProductoController implements Initializable {
         if(evt.equals(btnAgregarProd)){
             if(comprobarCampos()){
                agregarProducto(); 
-            }
-            
+            }            
         }
         
         if(evt.equals(btnModificarProd)){
+            
+        }
+        
+        if(evt.equals(btnEliminarProducto)){
             
         }
         
@@ -207,24 +210,24 @@ public class ViewGestionProductoController implements Initializable {
             double costo =  Double.parseDouble(tfPrecioProd.getText());
             double precio =  Double.parseDouble(tfCostoProd.getText());
             int stock = Integer.valueOf(tfStockProd.getText());
-            String categoria = "ninguna";
+            String categoria = (String)comboxCategoria.getValue();
             String descripcion = taDescripcionProd.getText();
             producto=new Producto(codigo,nombre,costo,precio,stock,categoria,descripcion);
             DataBase.addProducto(producto);
             JOptionPane.showConfirmDialog(null, "¡Producto Agregado exitosamente!", "Producto Añadido", JOptionPane.WARNING_MESSAGE);
-            vaciarCampos();
-            
+            vaciarCampos();            
         }else{
            JOptionPane.showConfirmDialog(null, "Este producto ya existe", "Producto existente", JOptionPane.WARNING_MESSAGE); 
         }
     }
+    
     public void vaciarCampos(){
         tfCodigoProd.setText("");
         tfPrecioProd.setText("");
         tfCostoProd.setText("");
         tfStockProd.setText("");
         tfNombreProd.setText("");
-        comboxCategoria.getSelectionModel().select("");
+        comboxCategoria.getSelectionModel().select("Categoria");
         taDescripcionProd.setText("");
     }
             
