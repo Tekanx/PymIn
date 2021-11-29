@@ -156,13 +156,25 @@ public class ViewVentaController implements Initializable {
         ProductoVendido producto = new ProductoVendido();
         int cantidad;
         String codigo = JOptionPane.showInputDialog(null, "Ingrese código de Producto", "Agregar Producto a venta", JOptionPane.PLAIN_MESSAGE);
+        boolean existe=false;
+        int i=0;
         if(DataBase.getProducto(codigo) != null || !codigo.equals("")) {
             Producto productoDB = new Producto();
             productoDB = DataBase.getProducto(codigo);
-            producto.setProducto(productoDB);
+            producto.setProducto(productoDB);         
+            for(ProductoVendido prod: listadoProductos){
+                if(prod.getCodigoP().equals(producto.getCodigoP())){
+                    existe=true;
+                    producto.setCantidad(prod.getCantidad());
+                    break;
+                }
+                i++;
+            }        
             do{
                 cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad del Producto", "Cantidad a vender", JOptionPane.PLAIN_MESSAGE)); 
-                    
+                if(existe){
+                    cantidad+=producto.getCantidad();
+                }    
                 if(!producto.compatibilidadStock(cantidad)){
                     JOptionPane.showConfirmDialog(null, "No hay suficiente stock! su stock es: " + producto.getStock(), "¡Error!", JOptionPane.WARNING_MESSAGE);
                 }
@@ -181,8 +193,18 @@ public class ViewVentaController implements Initializable {
             }
         }
         */
-        producto.setCantidad(cantidad);
-        listado.add(producto);
+         
+           
+        if(existe){
+            /*System.out.println("\n\n\n "+i+"\n\n\n");
+            listadoProductos.remove(i);*/
+            listadoProductos.get(i).setCantidad(cantidad);
+            //loadTableView(listado);
+        }else{
+            producto.setCantidad(cantidad);
+            listado.add(producto);
+            
+        }
         return true;
     }
     

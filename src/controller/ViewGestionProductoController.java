@@ -116,11 +116,17 @@ public class ViewGestionProductoController implements Initializable {
         }
         
         if(evt.equals(btnModificarProd)){
-            
+            if(comprobarCampos()){
+               modificarProducto(); 
+            }
         }
         
         if(evt.equals(btnEliminarProducto)){
-            
+            if(tfCodigoProd.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "¡Código no ingresado! Ingrese un codigo de producto", "Sin Código", JOptionPane.ERROR_MESSAGE);
+            }else{
+                eliminarProducto(tfCodigoProd.getText());
+            }
         }
         
     }
@@ -230,6 +236,59 @@ public class ViewGestionProductoController implements Initializable {
         comboxCategoria.getSelectionModel().select("Categoria");
         taDescripcionProd.setText("");
     }
+     
+    
+    public void modificarProducto(){
+        String codigo = tfCodigoProd.getText();
+        Producto producto= DataBase.getProducto(codigo);
+        String mensaje="";
+        
+        if(producto.getNombre().equals("none")){            
+            JOptionPane.showConfirmDialog(null, "Este producto no existe", "Producto NO existente", JOptionPane.WARNING_MESSAGE); 
             
+        }else{
+            String nombre = tfNombreProd.getText();
+            double costo =  Double.parseDouble(tfCostoProd.getText());                   
+            double precio =  Double.parseDouble(tfPrecioProd.getText());
+            int stock = Integer.valueOf(tfStockProd.getText()); //falta lo de stock
+            String categoria = (String)comboxCategoria.getValue();
+            String descripcion = taDescripcionProd.getText();
+            
+            if(!producto.getNombre().equals(nombre)){
+                mensaje+="\n-Nombre";
+                DataBase.updateNombreProducto(codigo, nombre);
+            }           
+            if(producto.getCosto()!=costo){
+                mensaje+="\n-Costo "+producto.getCosto()+costo;
+                DataBase.updateCosto(codigo, costo);
+            }
+            if(producto.getPrecio()!=precio){
+                mensaje+="\n-Precio";
+                DataBase.updatePrecio(codigo, precio);
+            }
+            if(!producto.getCategoria().equals(categoria)){
+                mensaje+="\n-Categoria";
+                DataBase.updateCategoria(codigo, categoria);
+            }  
+            if(!producto.getDescripcion().equals(descripcion)){
+                mensaje+="\n-Descripción";
+                DataBase.updateDescripcion(codigo, descripcion);
+            }        
+            if(!mensaje.equals("")){
+                JOptionPane.showConfirmDialog(null, "Se han modificado los siguientes atributos:"+mensaje, "Producto Modificado", JOptionPane.WARNING_MESSAGE);
+                vaciarCampos(); 
+            }
+        }      
+    }
+    
+    public void eliminarProducto(String codigo){
+        Producto producto= DataBase.getProducto(codigo);
+        if(producto.getNombre().equals("none")){            
+            JOptionPane.showConfirmDialog(null, "Este producto no existe", "Producto NO existente", JOptionPane.WARNING_MESSAGE);          
+        }else{
+            DataBase.updateStock(codigo, -(producto.getStock()+1));
+            JOptionPane.showConfirmDialog(null, "El producto se ha eliminado\n"+"Este seguirá existiendo pero no se mostrará en el inventario", "Producto Eliminado", JOptionPane.WARNING_MESSAGE);
+        }
+    }
     
 }

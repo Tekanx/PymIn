@@ -115,9 +115,10 @@ public class ConexionBD {
                 Integer stock = rs.getInt("stock");
                 String descripcion = rs.getString("descripcion");
                 String categoria = rs.getString("nombreCategoria");                
-                Producto prod= new Producto(codigo,nombreProducto,costo,precio,stock,categoria,descripcion);            
-                list.add(prod);
-                //System.out.println(prod.toString());
+                Producto prod= new Producto(codigo,nombreProducto,costo,precio,stock,categoria,descripcion);
+                if (stock>0){
+                    list.add(prod);
+                }
             }
         }catch(Exception ex){
             ex.printStackTrace();
@@ -147,7 +148,9 @@ public class ConexionBD {
                 String descripcion = rs.getString("descripcion");
                 String categoria = rs.getString("nombreCategoria");                
                 Producto prod= new Producto(codigo,nombreProducto,costo,precio,stock,categoria,descripcion);            
-                list.add(prod);
+                if (stock>0){
+                    list.add(prod);
+                }
                 System.out.println(prod.toString());
             }
         }catch(Exception ex){
@@ -260,7 +263,6 @@ public class ConexionBD {
             rs = st.executeQuery(query);
             while(rs.next()){
                 String nombreCategoria = rs.getString("nombreCategoria");
-                System.out.println(nombreCategoria);
                 list.add(nombreCategoria);
             }           
         }catch(Exception ex){
