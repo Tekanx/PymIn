@@ -157,12 +157,12 @@ public class ViewVentaController implements Initializable {
         int cantidad;
         String codigo = JOptionPane.showInputDialog(null, "Ingrese código de Producto", "Agregar Producto a venta", JOptionPane.PLAIN_MESSAGE);
         boolean existe=false;
-        int i=0;
+        int i=0;  
         if(DataBase.getProducto(codigo) != null || !codigo.equals("")) {
-            Producto productoDB = new Producto();
+            Producto productoDB;
             productoDB = DataBase.getProducto(codigo);
             producto.setProducto(productoDB);         
-            for(ProductoVendido prod: listadoProductos){
+            for(ProductoVendido prod: listado){
                 if(prod.getCodigoP().equals(producto.getCodigoP())){
                     existe=true;
                     producto.setCantidad(prod.getCantidad());
@@ -198,8 +198,8 @@ public class ViewVentaController implements Initializable {
         if(existe){
             /*System.out.println("\n\n\n "+i+"\n\n\n");
             listadoProductos.remove(i);*/
-            listadoProductos.get(i).setCantidad(cantidad);
-            //loadTableView(listado);
+            listado.get(i).setCantidad(cantidad);
+            tvVentaProductos.refresh();
         }else{
             producto.setCantidad(cantidad);
             listado.add(producto);
@@ -266,6 +266,7 @@ public class ViewVentaController implements Initializable {
             JOptionPane.showMessageDialog(null, "Error de carga de Escena: \n" + ex,"ERROR DE CARGA",JOptionPane.WARNING_MESSAGE);
         }
     } 
+    
     private void loadStage(Parent url){
         try{
             Stage stage = new Stage();
@@ -304,8 +305,5 @@ public class ViewVentaController implements Initializable {
         
     }
 
-    private String vistaScanner() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }
