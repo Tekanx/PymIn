@@ -4,6 +4,7 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import static main.main.DataBase;
 
 /**
  *
@@ -21,7 +22,7 @@ public class Boleta {
     public Boleta() {
     }
 
-    public Boleta(int id, double totalVenta, LocalDate fecha, LocalTime hora, String medioPago) {
+    public Boleta(int id, double totalVenta, LocalDate fecha, LocalTime hora, String medioPago) { //desde bd
         this.id = id;
         this.totalVenta = totalVenta;
         this.fecha = fecha;
@@ -80,14 +81,54 @@ public class Boleta {
         this.medioPago = medioPago;
     }
     
+    public void addProductoVendido(Producto producto,int cantidad){ 
+        for(int i=0; i <listaProductos.size(); i++){ //revisando si ya esta 
+            if(listaProductos.get(i).getCodigoP() == producto.getCodigo()){ //si está
+                ProductoVendido pv = listaProductos.get(i);
+                int aux = listaProductos.get(i).getCantidad()  + cantidad;
+                if(aux < 0){
+                    System.out.print("error al restar cantidad de producto");
+                }else if(aux == 0){
+                   listaProductos.remove(i);
+                }else{
+                    if(pv.compatibilidadStock(aux)){
+                        totalVenta-= pv.getTotalParcial();
+                        pv.setTotalParcial(aux);
+                        totalVenta+= pv.getTotalParcial();
+                    }else{
+                        System.out.print("cantidad mayor al stock disponible");
+                    }                    
+                }
+                return;
+            }        
+        }// si no está
+        ProductoVendido prodVendido= new ProductoVendido(id,producto,cantidad);
+        if(prodVendido.compatibilidadStock(cantidad)){       
+            listaProductos.add(prodVendido);
+            totalVenta+= prodVendido.getTotalParcial();  
+        }else{
+            //mensaje que no se pudo
+        }
+    }
+
+    
+    public void addPVendidoBD(ProductoVendido prodVendido){ //añadido desde BD
+        prodVendido.setIdBoleta(DataBase.getUltimoIdBoleta() + 1);
+        listaProductos.add(prodVendido);
+    }
+    
+    public ArrayList<ProductoVendido> getListaProductos(){
+        return listaProductos;
+    }
+    public void setListaProductos(ArrayList<ProductoVendido> listaProductos) {
+        this.listaProductos=listaProductos;
+    }
+
     public void addProductoVendido(ProductoVendido prodVendido){ //falta revisar si ya esta
         prodVendido.setIdBoleta(id);
         listaProductos.add(prodVendido);
        //totalVenta+= prodVendido.getCantidad() * //valor producto
         
     }
-    public ArrayList<ProductoVendido> getListaProductos(){
-        return listaProductos;
-    }
-    
+
 }

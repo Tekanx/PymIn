@@ -10,8 +10,8 @@ public class Producto {
     private String nombre;
     private Double costo;
     private Double precio;
-    private Integer stock;
-    private int categoria;
+    private int stock;
+    private String categoria;
     private String descripcion;
 
     public Producto() {
@@ -20,18 +20,19 @@ public class Producto {
         this.costo = 0.0;
         this.precio = 0.0;
         this.stock = 0;
-        this.categoria = 0;
+        this.categoria = "ninguna";
+
         this.descripcion = "";
     }
     
-    public Producto(String codigo, String nombre, String descripcion, int stock){
+    /*public Producto(String codigo, String nombre, String descripcion, int stock){
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.stock = stock;
-    }
+    }*/
 
-    public Producto(String codigo, String nombre, Double costo, Double precio, Integer stock, int categoria, String descripcion) {
+    public Producto(String codigo, String nombre, Double costo, Double precio, Integer stock, String categoria, String descripcion) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.costo = costo;
@@ -39,6 +40,13 @@ public class Producto {
         this.stock = stock;
         this.categoria = categoria;
         this.descripcion = descripcion;
+    }
+
+    public Producto(Double precio, String nombre, String codigo, int stock) {
+        this.precio = precio;
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.stock = stock;
     }
     
     /* Methods */
@@ -52,7 +60,7 @@ public class Producto {
     /* Getters & Setters */
     
     public String getCodigo() {
-        return codigo;
+        return this.codigo;
     }
 
     public void setCodigo(String codigo) {
@@ -60,7 +68,7 @@ public class Producto {
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public void setNombre(String nombre) {
@@ -68,7 +76,7 @@ public class Producto {
     }
 
     public Double getPrecio() {
-        return precio;
+        return this.precio;
     }
 
     public void setPrecio(Double precio) {
@@ -76,7 +84,7 @@ public class Producto {
     }
 
     public Double getCosto() {
-        return costo;
+        return this.costo;
     }
 
     public void setCosto(Double costo) {
@@ -84,30 +92,26 @@ public class Producto {
     }
 
     public Integer getStock() {
-        return stock;
+        return this.stock;
     }
 
     public void setStock(Integer stock) {
         this.stock = stock;
     }
 
-    public int getCategoria() {
-        return categoria;
+    public String getCategoria() {
+        return this.categoria;
     }
 
-    public void setCategoria(int categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return this.descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    
-   
-    
+    }      
 }
