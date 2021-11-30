@@ -57,6 +57,9 @@ public class ViewGestionProductoController implements Initializable {
     private Button btnVolverGestionI;
     
     @FXML
+    private Button btnAgregarStock;
+    /*END Buttons */
+    @FXML
     private void eventKey(KeyEvent event){
     }
  
@@ -126,6 +129,13 @@ public class ViewGestionProductoController implements Initializable {
                 JOptionPane.showMessageDialog(null, "¡Código no ingresado! Ingrese un codigo de producto", "Sin Código", JOptionPane.ERROR_MESSAGE);
             }else{
                 eliminarProducto(tfCodigoProd.getText());
+            }
+        }
+        if(evt.equals(btnAgregarStock)){
+            if(tfCodigoProd.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "¡Código no ingresado! Ingrese un codigo de producto", "Sin Código", JOptionPane.ERROR_MESSAGE);
+            }else{
+                agregarStock(tfCodigoProd.getText());
             }
         }
         
@@ -288,6 +298,17 @@ public class ViewGestionProductoController implements Initializable {
         }else{
             DataBase.updateStock(codigo, -(producto.getStock()+1));
             JOptionPane.showConfirmDialog(null, "El producto se ha eliminado\n"+"Este seguirá existiendo pero no se mostrará en el inventario", "Producto Eliminado", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    public void agregarStock(String codigo){
+        Producto producto= DataBase.getProducto(codigo);
+        int cantidad;
+        if(producto.getNombre().equals("none")){            
+            JOptionPane.showConfirmDialog(null, "Este producto no existe", "Producto NO existente", JOptionPane.WARNING_MESSAGE);          
+        }else{
+            cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad del Producto a agregar", "Cantidad a agregar Stock", JOptionPane.PLAIN_MESSAGE));
+            DataBase.updateStock(codigo,cantidad);
         }
     }
     
