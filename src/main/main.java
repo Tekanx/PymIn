@@ -12,6 +12,7 @@ import model.ConexionBD;
 import model.Inventario;
 import model.RegistroVentas;
 import model.Boleta;
+import model.Producto;
 import model.ProductoVendido;
 
 /**
@@ -41,6 +42,7 @@ public class main extends Application{
     public static void main(String[] args){
         DataBase.getProducto("7802408015241");
         DataBase.getDatosProductos();  
+
         launch(args);
     }
 }

@@ -76,7 +76,6 @@ public class ConexionBD {
      **/
     public Producto getProducto(String codigo){
         Producto producto = new Producto();
-
         try{
             String query = "SELECT * FROM productos p INNER JOIN categorias c ON p.categoria = c.idCategoria WHERE codigo= '"+codigo+"' ";        
             rs = st.executeQuery(query);
@@ -381,6 +380,7 @@ public class ConexionBD {
             }
             for(ProductoVendido pv: list){
                 pv.setProducto(getProducto(pv.getCodigoP()));
+
             }
         }catch(Exception ex){
             ex.printStackTrace();
@@ -388,3 +388,4 @@ public class ConexionBD {
         return list;
     }
 }
+

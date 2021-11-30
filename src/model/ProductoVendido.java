@@ -34,6 +34,7 @@ public class ProductoVendido {
         this.idBoleta = idBoleta;
         this.codigoP= codigoP;
         this.cantidad = cantidad;
+        //falta ver si cantidad es posible dependiendo el stock
     }
 
     /* Methods */
@@ -41,7 +42,6 @@ public class ProductoVendido {
     @Override
     public String toString() {
         return "ProductoVendido{" /*+ "idVenta=" + idVenta*/ + " idBoleta=" + idBoleta + ", codigoProducto=" + producto.getCodigo() + ", cantidad=" + cantidad + '}';
-
     }
     
     /* Getters & Setters */
@@ -84,7 +84,6 @@ public class ProductoVendido {
     public int getStock() {
         return this.producto.getStock();
     }
-    
     public int getStockP(){
         return this.stockP;
     }
@@ -127,8 +126,6 @@ public class ProductoVendido {
         setCodigoP(prod.getCodigo());
         setStockP(prod.getStock());
     }
-
-    
     public boolean compatibilidadStock(int cantidad){
         if(cantidad > producto.getStock()){
            return false; 

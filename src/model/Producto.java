@@ -21,7 +21,6 @@ public class Producto {
         this.precio = 0.0;
         this.stock = 0;
         this.categoria = "ninguna";
-
         this.descripcion = "";
     }
     

@@ -84,6 +84,7 @@ public class Boleta {
     public void addProductoVendido(Producto producto,int cantidad){ 
         for(int i=0; i <listaProductos.size(); i++){ //revisando si ya esta 
             if(listaProductos.get(i).getCodigoP() == producto.getCodigo()){ //si está
+
                 ProductoVendido pv = listaProductos.get(i);
                 int aux = listaProductos.get(i).getCantidad()  + cantidad;
                 if(aux < 0){
@@ -95,6 +96,7 @@ public class Boleta {
                         totalVenta-= pv.getTotalParcial();
                         pv.setTotalParcial(aux);
                         totalVenta+= pv.getTotalParcial();
+
                     }else{
                         System.out.print("cantidad mayor al stock disponible");
                     }                    
@@ -106,6 +108,7 @@ public class Boleta {
         if(prodVendido.compatibilidadStock(cantidad)){       
             listaProductos.add(prodVendido);
             totalVenta+= prodVendido.getTotalParcial();  
+
         }else{
             //mensaje que no se pudo
         }
@@ -125,10 +128,8 @@ public class Boleta {
     }
 
     public void addProductoVendido(ProductoVendido prodVendido){ //falta revisar si ya esta
+
         prodVendido.setIdBoleta(id);
         listaProductos.add(prodVendido);
-       //totalVenta+= prodVendido.getCantidad() * //valor producto
-        
     }
-
 }
