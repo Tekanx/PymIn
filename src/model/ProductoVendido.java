@@ -8,6 +8,7 @@ package model;
 public class ProductoVendido {
     private int idBoleta;  
     private Producto producto = new Producto();
+
     private int cantidad;
     private Double precioP;
     private String nombreP;
@@ -40,6 +41,7 @@ public class ProductoVendido {
     @Override
     public String toString() {
         return "ProductoVendido{" /*+ "idVenta=" + idVenta*/ + " idBoleta=" + idBoleta + ", codigoProducto=" + producto.getCodigo() + ", cantidad=" + cantidad + '}';
+
     }
     
     /* Getters & Setters */

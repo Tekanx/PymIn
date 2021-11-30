@@ -43,3 +43,8 @@ nbdist/
 release.properties
 pom.xml.releaseBackup
 pom.xml.tag
+nbproject/project.properties
+nbproject/build-impl.xml
+nbproject/genfiles.properties
+nbproject/project.xml
+nbproject/project.properties

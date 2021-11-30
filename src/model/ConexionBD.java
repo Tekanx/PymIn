@@ -76,6 +76,7 @@ public class ConexionBD {
      **/
     public Producto getProducto(String codigo){
         Producto producto = new Producto();
+
         try{
             String query = "SELECT * FROM productos p INNER JOIN categorias c ON p.categoria = c.idCategoria WHERE codigo= '"+codigo+"' ";        
             rs = st.executeQuery(query);
@@ -289,8 +290,7 @@ public class ConexionBD {
      
      
      /*---------------------------------------------Boleta---------------------------------------------*/
-     
-     
+
      /**Añade una boleta a la base de datos junto a sus productos vendidos y descuenta lo vendido al stock
      * @param boleta
       **/

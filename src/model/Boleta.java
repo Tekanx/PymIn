@@ -123,5 +123,12 @@ public class Boleta {
     public void setListaProductos(ArrayList<ProductoVendido> listaProductos) {
         this.listaProductos=listaProductos;
     }
-    
+
+    public void addProductoVendido(ProductoVendido prodVendido){ //falta revisar si ya esta
+        prodVendido.setIdBoleta(id);
+        listaProductos.add(prodVendido);
+       //totalVenta+= prodVendido.getCantidad() * //valor producto
+        
+    }
+
 }
