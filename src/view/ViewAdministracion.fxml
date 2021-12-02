@@ -60,8 +60,8 @@
                                     <TableColumn fx:id="colUnidadesProd" prefWidth="70.0" text="Stock" />
                                     <TableColumn fx:id="colCostoProd" prefWidth="90.0" text="Costo" />
                                     <TableColumn fx:id="colPrecioProd" prefWidth="90.0" text="Precio" />
-                                    <TableColumn fx:id="colCategoriaProd" prefWidth="111.0" text="Categoria" />
-                                    <TableColumn fx:id="colDescripcionProd" prefWidth="280.0" text="Descripcion" />
+                                    <TableColumn fx:id="colCategoriaProd" prefWidth="111.0" text="Categoría" />
+                                    <TableColumn fx:id="colDescripcionProd" prefWidth="280.0" text="Descripción" />
                                 </columns>
                               </TableView>
                            </children>
@@ -83,7 +83,7 @@
                         <Insets top="25.0" />
                      </VBox.margin>
                   </ComboBox>
-                  <Button fx:id="btnFiltrar" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1e81b0;" text="Filtrar por Categoria" textFill="WHITE">
+                  <Button fx:id="btnFiltrar" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1e81b0;" text="Filtrar por Categoría" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -113,7 +113,7 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" lineSpacing="10.0" prefHeight="58.0" prefWidth="263.0" text="Valorizacion Inventario" textAlignment="CENTER" underline="true">
+                  <Label alignment="CENTER" lineSpacing="10.0" prefHeight="58.0" prefWidth="263.0" text="Valorización Inventario" textAlignment="CENTER" underline="true">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -125,7 +125,7 @@
                   </Label>
                   <HBox alignment="TOP_RIGHT" prefHeight="58.0" prefWidth="665.0">
                      <children>
-                        <Button fx:id="btnAgregarCategoria" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1e81b0;" text="Agregar Categoria" textFill="WHITE">
+                        <Button fx:id="btnAgregarCategoria" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #1e81b0;" text="Agregar Categoría" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

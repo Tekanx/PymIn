@@ -39,7 +39,7 @@
             <HBox prefHeight="52.0" prefWidth="61.0" />
             <VBox prefHeight="88.0" prefWidth="159.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="156.0" text="Fecha Termino">
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="156.0" text="Fecha Término">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -67,7 +67,7 @@
          <children>
             <TableView fx:id="tvReporte" prefHeight="308.0" prefWidth="426.0" style="-fx-border-width: 2; -fx-border-style: line; -fx-border-color: #808080;">
               <columns>
-                <TableColumn fx:id="colCodigoProd" prefWidth="91.20001173019409" text="Codigo" />
+                <TableColumn fx:id="colCodigoProd" prefWidth="91.20001173019409" text="Código" />
                 <TableColumn fx:id="colNombreProd" prefWidth="143.20000457763672" text="Nombre" />
                   <TableColumn fx:id="colCantidadProd" prefWidth="77.60003662109375" text="Cantidad" />
                   <TableColumn fx:id="colTotalProd" prefWidth="93.5999755859375" text="Total" />
