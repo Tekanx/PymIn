@@ -215,7 +215,7 @@
       </HBox>
       <HBox alignment="BOTTOM_CENTER" prefHeight="59.0" prefWidth="710.0">
          <children>
-            <Button fx:id="btnVolverGestionI" alignment="CENTER" mnemonicParsing="false" onAction="#eventAction" prefHeight="30.0" prefWidth="216.0" style="-fx-background-color: #f0ffff;" text="Volver a gestión de Inventario" textAlignment="CENTER">
+            <Button fx:id="btnVolverGestionI" alignment="CENTER" mnemonicParsing="false" onAction="#eventAction" prefHeight="30.0" prefWidth="216.0" style="-fx-background-color: #f0ffff;" text="Volver a Control de Inventario" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
