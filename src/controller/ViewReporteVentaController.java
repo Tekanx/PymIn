@@ -174,10 +174,10 @@ public class ViewReporteVentaController implements Initializable {
                 }         
             }
         }
-        labelTotalRecaudado.setText(Double.toString(recaudado));
-        labelEfectivo.setText(Double.toString(efectivo));
-        labelTarjeta.setText(Double.toString(tarjeta));
-        labelTransferencia.setText(Double.toString(transferencia));
+        labelTotalRecaudado.setText("$"+Double.toString(recaudado));
+        labelEfectivo.setText("$"+Double.toString(efectivo));
+        labelTarjeta.setText("$"+Double.toString(tarjeta));
+        labelTransferencia.setText("$"+Double.toString(transferencia));
         loadTableView(listadoProductos);        
     }
     

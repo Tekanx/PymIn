@@ -221,6 +221,7 @@ public class ViewGestionProductoController implements Initializable {
     public void agregarProducto(){
         String codigo = tfCodigoProd.getText();
         Producto producto= DataBase.getProducto(codigo);
+        String mensaje="";
         if(producto.getNombre().equals("none")){
             String nombre = tfNombreProd.getText();
             double costo =  Double.parseDouble(tfPrecioProd.getText());
@@ -230,7 +231,11 @@ public class ViewGestionProductoController implements Initializable {
             String descripcion = taDescripcionProd.getText();
             producto=new Producto(codigo,nombre,costo,precio,stock,categoria,descripcion);
             DataBase.addProducto(producto);
-            JOptionPane.showConfirmDialog(null, "¡Producto Agregado exitosamente!", "Producto Añadido", JOptionPane.WARNING_MESSAGE);
+            if(costo> precio){
+                mensaje="El precio ingresado es menor al costo";
+            }
+            
+            JOptionPane.showConfirmDialog(null, "¡Producto Agregado exitosamente!\n"+mensaje, "Producto Añadido", JOptionPane.WARNING_MESSAGE);
             vaciarCampos();            
         }else{
            JOptionPane.showConfirmDialog(null, "Este producto ya existe", "Producto existente", JOptionPane.WARNING_MESSAGE); 
@@ -308,7 +313,13 @@ public class ViewGestionProductoController implements Initializable {
             JOptionPane.showConfirmDialog(null, "Este producto no existe", "Producto NO existente", JOptionPane.WARNING_MESSAGE);          
         }else{
             cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad del Producto a agregar", "Cantidad a agregar Stock", JOptionPane.PLAIN_MESSAGE));
-            DataBase.updateStock(codigo,cantidad);
+            if(cantidad<0){
+                JOptionPane.showConfirmDialog(null, "El stock ingresado no puede ser menor a 0", "Stock Inválido", JOptionPane.WARNING_MESSAGE); 
+            }else{
+               DataBase.updateStock(codigo,cantidad); 
+               mostrarProducto(codigo);
+            }
+            
         }
     }
     

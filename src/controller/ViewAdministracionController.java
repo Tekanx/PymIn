@@ -212,12 +212,17 @@ public class ViewAdministracionController implements Initializable {
     
     public void cargarCategorias(){
         ArrayList<String> categorias = DataBase.getCategorias();
+        categorias.add("Todas");
         ObservableList dataCategorias = FXCollections.observableList(categorias);
         comboxCategoria.setItems(dataCategorias);
     }
     
     public void filtrar(){
         String cat= (String)comboxCategoria.getValue();
+        if (cat.equals("Todas")){
+            loadTable(DataBase.getProductos());
+            return;
+        }
         ArrayList<String> categorias = DataBase.getCategorias();
         for (String categoria:categorias){
             if(cat.equals(categoria)){
