@@ -180,7 +180,11 @@ public class ViewGestionProductoController implements Initializable {
         }else{
             tfPrecioProd.setText(String.valueOf(producto.getPrecio()));
             tfCostoProd.setText(String.valueOf(producto.getCosto()));
-            tfStockProd.setText(String.valueOf(producto.getStock()));
+            int stock=producto.getStock();
+            if(stock==-1){
+                stock=0;
+            }
+            tfStockProd.setText(String.valueOf(stock));
             tfNombreProd.setText(producto.getNombre());
             comboxCategoria.getSelectionModel().select(producto.getCategoria());
             taDescripcionProd.setText(producto.getDescripcion());
@@ -316,6 +320,9 @@ public class ViewGestionProductoController implements Initializable {
             if(cantidad<0){
                 JOptionPane.showConfirmDialog(null, "El stock ingresado no puede ser menor a 0", "Stock Inválido", JOptionPane.WARNING_MESSAGE); 
             }else{
+                if (producto.getStock()==-1){
+                    cantidad+=1;
+                }
                DataBase.updateStock(codigo,cantidad); 
                mostrarProducto(codigo);
             }
