@@ -109,11 +109,17 @@ public class ViewAdministracionController implements Initializable {
     }
     
     @FXML
-    private void eventAction(ActionEvent event){
+    private void eventAction(ActionEvent event) throws IOException{
         Object evt = event.getSource();       
         
         if(evt.equals(btnGestionarProductos)){
-            loadStage("/view/ViewGestionProducto.fxml", event);
+            if(tvProductos.getSelectionModel().getSelectedItem() == null){ 
+                loadStage("/view/ViewGestionProducto.fxml", event);
+            }else{
+                pasarProducto();
+                
+                ((Node)(event.getSource())).getScene().getWindow().hide();
+            }
         }
         
         if(evt.equals(btnAgregarCategoria)){
@@ -229,6 +235,35 @@ public class ViewAdministracionController implements Initializable {
                 loadTable(DataBase.getProductosForCategoria(categoria));
                 return;
             }
+        }
+    }
+    public void pasarProducto(){
+        
+               
+
+        try{
+            Producto prod= tvProductos.getSelectionModel().getSelectedItem();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ViewGestionProducto.fxml"));
+            Parent root = loader.load();
+            ViewGestionProductoController gestionProdController = loader.getController();
+            gestionProdController.loadProducto(prod);            
+            loadStage(root);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error de carga de Escena: \n" + ex,"ERROR DE CARGA",JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private void loadStage(Parent url){
+        try{
+            Stage stage = new Stage();
+           
+            Scene scene = new Scene(url);
+            stage.setScene(scene);
+            stage.show();
+            
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error de carga de Escena: \n" + ex,"ERROR DE CARGA",JOptionPane.WARNING_MESSAGE);
         }
     }
 }

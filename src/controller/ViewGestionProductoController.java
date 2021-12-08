@@ -330,4 +330,14 @@ public class ViewGestionProductoController implements Initializable {
         }
     }
     
+    public void loadProducto(Producto producto){
+        try{
+            tfCodigoProd.setText(producto.getCodigo());
+            mostrarProducto(producto.getCodigo());
+            
+        }catch(Exception SQLEx){
+            SQLEx.printStackTrace();
+        }
+    }
+    
 }
